@@ -36,16 +36,14 @@ if (!apiKey) {
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// Load dependencies with direct ESM CDN URLs
-		const [React, ReactDOM, lucide, icons] = await Promise.all([
+		// Updated dependencies - removed react-icons
+		const [React, ReactDOM, lucide] = await Promise.all([
 			import("https://cdn.skypack.dev/react"),
 			import("https://cdn.skypack.dev/react-dom"),
 			import("https://cdn.skypack.dev/lucide-react"),
-			import("https://cdn.skypack.dev/react-icons/fa6"),
 		]);
 
-		const { MessageSquare, Send, X, Power } = lucide;
-		const { FaRobot } = icons;
+		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
 
 		// Load chatbot component with full URL to the ES module
 		const { default: Chatbot } = await import(
@@ -55,7 +53,7 @@ async function initChatbot() {
 		const container = document.createElement("div");
 		document.body.appendChild(container);
 
-		// Create root and render
+		// Updated props to remove FaRobot
 		const root = ReactDOM.createRoot(container);
 		root.render(
 			React.createElement(
@@ -63,7 +61,7 @@ async function initChatbot() {
 				null,
 				React.createElement(Chatbot, {
 					apiKey,
-					icons: { MessageSquare, Send, X, Power, FaRobot },
+					icons: { MessageSquare, Send, X, Power, BotIcon },
 				})
 			)
 		);

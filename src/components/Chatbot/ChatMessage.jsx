@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { FaRobot } from "react-icons/fa6";
+import { BotIcon } from "lucide-react";
 import useTypewriter from "../../hooks/useTypewriter";
 
 const ChatMessage = ({ message, type }) => {
@@ -16,7 +16,7 @@ const ChatMessage = ({ message, type }) => {
 		>
 			{type === "assistant" && (
 				<div className='h-8 w-8 flex items-center justify-center rounded-full bg-purple-600'>
-					<FaRobot className='w-5 h-5 text-white' />
+					<BotIcon className='w-5 h-5 text-white' />
 				</div>
 			)}
 			<div

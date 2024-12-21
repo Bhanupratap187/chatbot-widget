@@ -1,6 +1,5 @@
 import vr, { useState as se, useRef as Ne, useEffect as Se } from "react";
-import { FaRobot as yr } from "react-icons/fa6";
-import { MessageSquare as Lr, Power as Ur, X as Vr, Send as zr } from "lucide-react";
+import { BotIcon as yr, MessageSquare as Lr, Power as Ur, X as Vr, Send as zr } from "lucide-react";
 function Jr(n) {
   return n && n.__esModule && Object.prototype.hasOwnProperty.call(n, "default") ? n.default : n;
 }

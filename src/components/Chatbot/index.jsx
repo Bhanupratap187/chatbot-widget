@@ -4,7 +4,7 @@ import { ChatWebSocket } from "../../lib/websocket";
 import ChatMessage from "./ChatMessage";
 import { MessageSquare, Send, X, Power } from "lucide-react";
 import TypingIndicator from "./TypingIndicator";
-import { FaRobot } from "react-icons/fa6";
+import { BotIcon } from "lucide-react";
 
 const Chatbot = ({ apiKey }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +110,7 @@ const Chatbot = ({ apiKey }) => {
 				<div className='bg-purple-600 p-4 rounded-t-lg flex items-center justify-between'>
 					<div className='flex items-center gap-2'>
 						<div className='h-7 w-7 flex items-center justify-center rounded-full bg-white'>
-							<FaRobot className='w-5 h-5 text-purple-600' />
+							<BotIcon className='w-5 h-5 text-purple-600' />
 						</div>
 						<h2 className='text-white text-lg font-semibold'>Chatbot</h2>
 					</div>

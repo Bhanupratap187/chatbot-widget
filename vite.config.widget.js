@@ -15,13 +15,12 @@ export default defineConfig({
 			fileName: (format) => `chatbot.${format}.js`,
 		},
 		rollupOptions: {
-			external: ["react", "react-dom", "lucide-react", "react-icons/fa6"],
+			external: ["react", "react-dom", "lucide-react"],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
 					"lucide-react": "lucide",
-					"react-icons/fa6": "ReactIcons",
 				},
 			},
 		},
