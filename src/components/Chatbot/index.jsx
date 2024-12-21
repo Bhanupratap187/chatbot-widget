@@ -94,17 +94,15 @@ const Chatbot = ({ apiKey }) => {
 			{" "}
 			<button
 				onClick={handleToggleChat}
-				className={`${
-					isOpen ? "hidden" : "flex"
-				} items-center justify-center w-14 h-14 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all duration-200 fixed bottom-4 right-4`}
+				className={`${isOpen ? "hidden" : "flex"
+					} items-center justify-center w-14 h-14 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all duration-200 fixed bottom-4 right-4`}
 			>
 				<MessageSquare className='w-6 h-6' />
 			</button>
 			{/* Chat window */}
 			<div
-				className={`${
-					isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-				} origin-bottom-right transition-all duration-200 w-[400px] h-[600px] bg-white rounded-lg shadow-xl flex flex-col`}
+				className={`${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+					} origin-bottom-right transition-all duration-200 w-[400px] h-[600px] bg-white rounded-lg shadow-xl flex flex-col`}
 			>
 				{/* Header */}
 				<div className='bg-purple-600 p-4 rounded-t-lg flex items-center justify-between'>
