@@ -38,9 +38,11 @@ async function initChatbot() {
 	try {
 		// Updated dependencies - removed react-icons
 		const [React, ReactDOM, lucide] = await Promise.all([
-			import("https://cdn.skypack.dev/react"),
-			import("https://cdn.skypack.dev/react-dom"),
-			import("https://cdn.skypack.dev/lucide-react"),
+			import("https://unpkg.com/react@18.2.0/umd/react.production.min.js"),
+			import(
+				"https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
+			),
+			import("https://unpkg.com/lucide-react@0.263.1/dist/esm/icons.js"),
 		]);
 
 		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
