@@ -30,7 +30,7 @@ if (!scriptTag) {
 const apiKey = scriptTag.getAttribute("data-api-key");
 if (!apiKey) {
 	console.error("Chatbot Error: API key is required");
-	throw new Error("API key is required");
+	throw new Error("API key is");
 }
 
 // Initialize chatbot
