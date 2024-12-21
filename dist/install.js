@@ -36,18 +36,16 @@ if (!apiKey) {
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// Load dependencies with versioned ESM CDN URLs
-		const [
-			{ default: React },
-			{ default: ReactDOM },
-			{ MessageSquare, Send, X, Power },
-			{ FaRobot },
-		] = await Promise.all([
-			import("https://esm.run/react@18.2.0"),
-			import("https://esm.run/react-dom@18.2.0"),
-			import("https://esm.run/lucide-react@0.263.1"),
-			import("https://esm.run/react-icons@4.11.0/fa6"),
+		// Load dependencies with direct ESM CDN URLs
+		const [React, ReactDOM, lucide, icons] = await Promise.all([
+			import("https://cdn.skypack.dev/react"),
+			import("https://cdn.skypack.dev/react-dom"),
+			import("https://cdn.skypack.dev/lucide-react"),
+			import("https://cdn.skypack.dev/react-icons/fa6"),
 		]);
+
+		const { MessageSquare, Send, X, Power } = lucide;
+		const { FaRobot } = icons;
 
 		// Load chatbot component with full URL to the ES module
 		const { default: Chatbot } = await import(
@@ -74,6 +72,7 @@ async function initChatbot() {
 		console.error("Error details:", {
 			message: error.message,
 			stack: error.stack,
+			name: error.name,
 		});
 	}
 }
