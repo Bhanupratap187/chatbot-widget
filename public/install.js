@@ -48,9 +48,15 @@ async function initChatbot() {
 		window.React = React;
 
 		// Now load Lucide after React is available globally
+		// const { default: lucide } = await import(
+		// 	"https://cdn.jsdelivr.net/npm/lucide-react@0.469.0/dist/cjs/lucide-react.min.js"
+		// );
+
+		// Use the ESM build of lucide-react
 		const { default: lucide } = await import(
-			"https://cdn.jsdelivr.net/npm/lucide-react@0.469.0/dist/cjs/lucide-react.min.js"
+			"https://cdn.jsdelivr.net/npm/lucide-react@0.469.0/dist/esm/lucide-react.min.js"
 		);
+
 
 		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
 
