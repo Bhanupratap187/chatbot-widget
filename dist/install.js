@@ -36,14 +36,21 @@ if (!apiKey) {
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// Updated dependencies - removed react-icons
-		const [React, ReactDOM, lucide] = await Promise.all([
+		// First load React and ReactDOM
+		const [{ default: React }, { default: ReactDOM }] = await Promise.all([
 			import("https://unpkg.com/react@18.2.0/umd/react.production.min.js"),
 			import(
 				"https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
 			),
-			import("https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"),
 		]);
+
+		// Add React to window object for Lucide
+		window.React = React;
+
+		// Now load Lucide after React is available globally
+		const { default: lucide } = await import(
+			"https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"
+		);
 
 		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
 
@@ -55,7 +62,6 @@ async function initChatbot() {
 		const container = document.createElement("div");
 		document.body.appendChild(container);
 
-		// Updated props to remove FaRobot
 		const root = ReactDOM.createRoot(container);
 		root.render(
 			React.createElement(
