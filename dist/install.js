@@ -17,13 +17,21 @@
 	// Initialize chatbot
 	async function initChatbot() {
 		try {
-			// Load dependencies
-			const React = await import("https://esm.sh/react@18");
-			const ReactDOM = await import("https://esm.sh/react-dom@18");
-			const { MessageSquare, Send, X, Power } = await import(
-				"https://esm.sh/lucide-react@0.263.1"
+			// Load dependencies with proper ESM CDN URLs
+			const React = await import(
+				"https://esm.sh/stable/react@18.2.0/es2022/react.js"
 			);
-			const { FaRobot } = await import("https://esm.sh/react-icons/fa6");
+			const ReactDOM = await import(
+				"https://esm.sh/stable/react-dom@18.2.0/es2022/react-dom.js"
+			);
+			const lucide = await import(
+				"https://esm.sh/stable/lucide-react@0.263.1/es2022/lucide-react.js"
+			);
+			const { FaRobot } = await import(
+				"https://esm.sh/stable/react-icons@4.11.0/fa6/index.js"
+			);
+
+			const { MessageSquare, Send, X, Power } = lucide;
 
 			// Load chatbot component
 			const { default: Chatbot } = await import(
