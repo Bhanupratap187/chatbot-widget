@@ -1,5 +1,4 @@
-// import { StrictMode } from "react";
-import { StrictMode } from "https://esm.sh/react@18.2.0";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/chatbot.css";
 import App from "./App.jsx";
