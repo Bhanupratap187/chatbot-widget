@@ -17,20 +17,15 @@
 	// Initialize chatbot
 	async function initChatbot() {
 		try {
-			// Load dependencies with versioned ESM CDN URLs
-			const [
-				{ default: React },
-				{ default: ReactDOM },
-				{ MessageSquare, Send, X, Power },
-				{ FaRobot },
-			] = await Promise.all([
-				import("https://esm.run/react@18.2.0"),
-				import("https://esm.run/react-dom@18.2.0"),
-				import("https://esm.run/lucide-react@0.263.1"),
-				import("https://esm.run/react-icons@4.11.0/fa6"),
-			]);
+			// Load dependencies
+			const React = await import("https://esm.sh/react@18");
+			const ReactDOM = await import("https://esm.sh/react-dom@18");
+			const { MessageSquare, Send, X, Power } = await import(
+				"https://esm.sh/lucide-react@0.263.1"
+			);
+			const { FaRobot } = await import("https://esm.sh/react-icons/fa6");
 
-			// Load chatbot component with full URL to the ES module
+			// Load chatbot component
 			const { default: Chatbot } = await import(
 				"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@main/dist/chatbot.es.js"
 			);
@@ -45,18 +40,13 @@
 					React.StrictMode,
 					null,
 					React.createElement(Chatbot, {
-						apiKey,
+						apiKey: apiKey,
 						icons: { MessageSquare, Send, X, Power, FaRobot },
 					})
 				)
 			);
 		} catch (error) {
 			console.error("Error loading chatbot:", error);
-			// Add more detailed error logging
-			console.error("Error details:", {
-				message: error.message,
-				stack: error.stack,
-			});
 		}
 	}
 
