@@ -42,9 +42,7 @@ async function initChatbot() {
 			import(
 				"https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
 			),
-			import(
-				"https://unpkg.com/browse/lucide-react@0.469.0/dist/umd/lucide-react.js"
-			),
+			import("https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"),
 		]);
 
 		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
