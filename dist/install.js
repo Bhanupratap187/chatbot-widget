@@ -27,7 +27,7 @@
 
 			// Load chatbot component
 			const { default: Chatbot } = await import(
-				"https://your-cdn.com/chatbot.esm.js"
+				"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@main/dist/chatbot.es.js"
 			);
 
 			const container = document.createElement("div");
