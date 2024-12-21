@@ -1,4 +1,5 @@
-import vr, { useState as se, useRef as Ne, useEffect as Se } from "react";
+import vr from "react";
+import { useState as se, useRef as Ne, useEffect as Se } from "https://esm.sh/react@18.2.0";
 import { BotIcon as yr, MessageSquare as Lr, Power as Ur, X as Vr, Send as zr } from "lucide-react";
 function Jr(n) {
   return n && n.__esModule && Object.prototype.hasOwnProperty.call(n, "default") ? n.default : n;
