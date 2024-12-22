@@ -36,15 +36,13 @@ if (!apiKey) {
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// Load React and ReactDOM
+		// Load React and ReactDOM from ESM builds
 		const [{ default: React }, { default: ReactDOM }] = await Promise.all([
-			import("https://unpkg.com/react@18.2.0/umd/react.production.min.js"),
-			import(
-				"https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
-			),
+			import("https://esm.sh/react@18.2.0"),
+			import("https://esm.sh/react-dom@18.2.0"),
 		]);
 
-		// Load chatbot component with full URL to the ES module
+		// Load chatbot component
 		const { default: Chatbot } = await import(
 			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.1.8/dist/chatbot.es.js"
 		);
