@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./src/**/*.{js,ts,jsx,tsx}"],
-	important: "#chatbot-container",
+	important: true,
+	prefix: "cb-",
 	theme: {
 		extend: {
 			fontFamily: {

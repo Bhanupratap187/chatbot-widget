@@ -95,43 +95,44 @@ const Chatbot = ({ apiKey }) => {
 	};
 
 	return (
-		<div className='fixed bottom-4 right-4 z-[1000]'>
-			{" "}
+		<div className='cb-fixed cb-bottom-4 cb-right-4 cb-z-[1000]'>
 			<button
 				onClick={handleToggleChat}
 				className={`${
-					isOpen ? "hidden" : "flex"
-				} items-center justify-center w-14 h-14 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all duration-200 fixed bottom-4 right-4`}
+					isOpen ? "cb-hidden" : "cb-flex"
+				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-rounded-full cb-bg-purple-600 hover:cb-bg-purple-700 cb-text-white cb-shadow-lg cb-transition-all cb-duration-200 cb-fixed cb-bottom-4 cb-right-4`}
 			>
-				<MessageSquareIcon className='w-6 h-6' />
+				<MessageSquareIcon className='cb-w-6 cb-h-6' />
 			</button>
 			{/* Chat window */}
 			<div
 				className={`${
-					isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-				} origin-bottom-right transition-all duration-200 w-[400px] h-[600px] bg-white rounded-lg shadow-xl flex flex-col`}
+					isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
+				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-white cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col`}
 			>
 				{/* Header */}
-				<div className='bg-purple-600 p-4 rounded-t-lg flex items-center justify-between'>
-					<div className='flex items-center gap-2'>
-						<div className='h-7 w-7 flex items-center justify-center rounded-full bg-white'>
-							<BotIcon className='w-5 h-5 text-purple-600' />
+				<div className='cb-bg-purple-600 cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between'>
+					<div className='cb-flex cb-items-center cb-gap-2'>
+						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
+							<BotIcon className='cb-w-5 cb-h-5 cb-text-purple-600' />
 						</div>
-						<h2 className='text-white text-lg font-semibold'>Chatbot</h2>
+						<h2 className='cb-text-white cb-text-lg cb-font-semibold'>
+							Chatbot
+						</h2>
 					</div>
-					<div className='flex items-center gap-2'>
+					<div className='cb-flex cb-items-center cb-gap-2'>
 						<button
 							onClick={handleEndChat}
-							className='text-white hover:text-red-200 transition-colors'
+							className='cb-text-white hover:cb-text-red-200 cb-transition-colors'
 							title='End Chat'
 						>
-							<PowerIcon className='w-6 h-6' />
+							<PowerIcon className='cb-w-6 cb-h-6' />
 						</button>
 						<button
 							onClick={() => setIsOpen(false)}
-							className='text-white hover:text-purple-200 transition-colors'
+							className='cb-text-white hover:cb-text-purple-200 cb-transition-colors'
 						>
-							<XIcon className='w-6 h-6' />
+							<XIcon className='cb-w-6 cb-h-6' />
 						</button>
 					</div>
 				</div>
@@ -139,7 +140,7 @@ const Chatbot = ({ apiKey }) => {
 				{/* Messages area */}
 				<div
 					ref={chatboxRef}
-					className='flex-1 overflow-y-auto p-4 space-y-4'
+					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4'
 				>
 					{messages.map((msg, idx) => (
 						<ChatMessage
@@ -154,24 +155,24 @@ const Chatbot = ({ apiKey }) => {
 				{/* Input area */}
 				<form
 					onSubmit={handleSubmit}
-					className='p-4 border-t'
+					className='cb-p-4 cb-border-t'
 				>
-					<div className='flex gap-2'>
+					<div className='cb-flex cb-gap-2'>
 						<textarea
 							value={inputMessage}
 							onChange={(e) => setInputMessage(e.target.value)}
 							onKeyDown={handleKeyDown}
 							placeholder='Type a message...'
-							className='flex-1 resize-none p-2 border rounded-lg focus:outline-none focus:border-purple-600 max-h-32'
+							className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg focus:cb-outline-none focus:cb-border-purple-600 cb-max-h-32'
 							rows='1'
 						/>
 						<button
 							type='submit'
 							disabled={!wsConnected}
-							className='p-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors'
+							className='cb-p-2 cb-text-white cb-bg-purple-600 cb-rounded-lg hover:cb-bg-purple-700 disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
 							onClick={handleSubmit}
 						>
-							<SendIcon className='w-5 h-5' />
+							<SendIcon className='cb-w-5 cb-h-5' />
 						</button>
 					</div>
 				</form>

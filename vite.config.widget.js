@@ -30,14 +30,13 @@ export default defineConfig({
 					react: "React",
 					"react-dom": "ReactDOM",
 				},
-
 				assetFileNames: (assetInfo) => {
-					const { name } = path.parse(assetInfo.name);
-					if (assetInfo.type === "asset" && /\.(css)$/.test(assetInfo.name)) {
+					if (assetInfo.name === "style.css") {
 						return "chatbot.min.css";
 					}
-					return `assets/${name}.[hash][extname]`;
+					return `assets/${assetInfo.name}`;
 				},
+				inlineDynamicImports: false,
 			},
 		},
 		cssCodeSplit: false,
@@ -49,16 +48,31 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "src"),
 		},
 	},
-	// Add this to ensure proper handling of externals in development
 	optimizeDeps: {
 		exclude: ["react", "react-dom"],
 	},
 	css: {
 		modules: {
 			scopeBehaviour: "local",
+			localsConvention: "camelCase",
+			generateScopedName: "[hash:base64:8]",
 		},
 		postcss: {
-			plugins: [tailwindcss, autoprefixer],
+			plugins: [
+				tailwindcss,
+				autoprefixer({
+					grid: true,
+					flexbox: true,
+				}),
+			],
+		},
+		preprocessorOptions: {
+			less: {
+				javascriptEnabled: true,
+				modifyVars: {
+					"root-entry-name": "default",
+				},
+			},
 		},
 	},
 });
