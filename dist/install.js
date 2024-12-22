@@ -36,7 +36,7 @@ if (!apiKey) {
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// First load React and ReactDOM
+		// Load React and ReactDOM
 		const [{ default: React }, { default: ReactDOM }] = await Promise.all([
 			import("https://unpkg.com/react@18.2.0/umd/react.production.min.js"),
 			import(
@@ -44,19 +44,9 @@ async function initChatbot() {
 			),
 		]);
 
-		// Add React to window object for Lucide
-		window.React = React;
-
-		// Now load Lucide after React is available globally
-		const { default: lucide } = await import(
-			"https://cdn.jsdelivr.net/npm/lucide-react@0.469.0/dist/esm/lucide-react.min.js"
-		);
-
-		const { MessageSquare, Send, X, Power, BotIcon } = lucide;
-
 		// Load chatbot component with full URL to the ES module
 		const { default: Chatbot } = await import(
-			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@main/dist/chatbot.es.js"
+			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.1.8/dist/chatbot.es.js"
 		);
 
 		const container = document.createElement("div");
@@ -67,10 +57,7 @@ async function initChatbot() {
 			React.createElement(
 				React.StrictMode,
 				null,
-				React.createElement(Chatbot, {
-					apiKey,
-					icons: { MessageSquare, Send, X, Power, BotIcon },
-				})
+				React.createElement(Chatbot, { apiKey })
 			)
 		);
 	} catch (error) {

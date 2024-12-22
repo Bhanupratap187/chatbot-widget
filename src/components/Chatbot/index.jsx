@@ -2,9 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { ChatWebSocket } from "../../lib/websocket";
 import ChatMessage from "./ChatMessage";
-import { MessageSquare, Send, X, Power } from "lucide-react";
+import {
+	MessageSquareIcon,
+	SendIcon,
+	XIcon,
+	PowerIcon,
+	BotIcon,
+} from "./SvgIcons";
 import TypingIndicator from "./TypingIndicator";
-import { BotIcon } from "lucide-react";
 
 const Chatbot = ({ apiKey }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -94,15 +99,17 @@ const Chatbot = ({ apiKey }) => {
 			{" "}
 			<button
 				onClick={handleToggleChat}
-				className={`${isOpen ? "hidden" : "flex"
-					} items-center justify-center w-14 h-14 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all duration-200 fixed bottom-4 right-4`}
+				className={`${
+					isOpen ? "hidden" : "flex"
+				} items-center justify-center w-14 h-14 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg transition-all duration-200 fixed bottom-4 right-4`}
 			>
-				<MessageSquare className='w-6 h-6' />
+				<MessageSquareIcon className='w-6 h-6' />
 			</button>
 			{/* Chat window */}
 			<div
-				className={`${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-					} origin-bottom-right transition-all duration-200 w-[400px] h-[600px] bg-white rounded-lg shadow-xl flex flex-col`}
+				className={`${
+					isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+				} origin-bottom-right transition-all duration-200 w-[400px] h-[600px] bg-white rounded-lg shadow-xl flex flex-col`}
 			>
 				{/* Header */}
 				<div className='bg-purple-600 p-4 rounded-t-lg flex items-center justify-between'>
@@ -118,13 +125,13 @@ const Chatbot = ({ apiKey }) => {
 							className='text-white hover:text-red-200 transition-colors'
 							title='End Chat'
 						>
-							<Power className='w-6 h-6' />
+							<PowerIcon className='w-6 h-6' />
 						</button>
 						<button
 							onClick={() => setIsOpen(false)}
 							className='text-white hover:text-purple-200 transition-colors'
 						>
-							<X className='w-6 h-6' />
+							<XIcon className='w-6 h-6' />
 						</button>
 					</div>
 				</div>
@@ -164,7 +171,7 @@ const Chatbot = ({ apiKey }) => {
 							className='p-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors'
 							onClick={handleSubmit}
 						>
-							<Send className='w-5 h-5' />
+							<SendIcon className='w-5 h-5' />
 						</button>
 					</div>
 				</form>

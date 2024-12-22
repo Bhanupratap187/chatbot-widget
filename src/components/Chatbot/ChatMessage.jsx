@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { BotIcon } from "lucide-react";
+import { BotIcon } from "./SvgIcons";
 import useTypewriter from "../../hooks/useTypewriter";
 
 const ChatMessage = ({ message, type }) => {
