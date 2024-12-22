@@ -4,12 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
-#chatbot-container * {
-	font-family: "Montserrat", serif;
-	all: initial;
-	font-family: "Montserrat", serif;
-}
-
 #chatbot-container {
 	all: initial;
+}
+
+#chatbot-container * {
+	all: initial;
+	font-family: "Montserrat", serif !important;
+}
+
+#chatbot-container img {
+	all: unset;
+	display: inline-block;
+}
+
+#chatbot-container button {
+	all: unset;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
