@@ -14,3 +14,46 @@
 	all: initial;
 	font-family: "Montserrat", serif;
 }
+
+/* Reset styles for the container */
+#chatbot-container {
+	all: initial;
+	font-family: "Montserrat", sans-serif;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 999999;
+}
+
+/* Scope Tailwind to our container */
+#chatbot-container {
+	@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+}
+
+/* Ensure SVG icons are visible and properly styled */
+#chatbot-container svg {
+	display: inline-block;
+	vertical-align: middle;
+	fill: currentColor;
+}
+
+/* Reset specific elements that might be affected by the host site */
+#chatbot-container button,
+#chatbot-container input,
+#chatbot-container div,
+#chatbot-container svg {
+	all: revert;
+	box-sizing: border-box;
+}
+
+/* Ensure the chat window stays above other elements */
+#chatbot-container .chat-window {
+	position: fixed;
+	bottom: 80px;
+	right: 20px;
+	z-index: 999999;
+}

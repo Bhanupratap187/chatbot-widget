@@ -1,10 +1,10 @@
 import React from "react";
 
 const TypingIndicator = () => (
-	<div className='flex gap-2 py-3 px-2 max-w-[80%] bg-gray-100 rounded-lg rounded-bl-none w-24'>
-		<div className='w-2 h-2 rounded-full bg-gray-500 animate-bounce [animation-delay:-0.3s]'></div>
-		<div className='w-2 h-2 rounded-full bg-gray-500 animate-bounce [animation-delay:-0.15s]'></div>
-		<div className='w-2 h-2 rounded-full bg-gray-500 animate-bounce'></div>
+	<div className='cb-flex cb-gap-2 cb-py-3 cb-px-2 cb-max-w-[80%] cb-bg-gray-100 cb-rounded-lg cb-rounded-bl-none cb-w-24'>
+		<div className='cb-w-2 cb-h-2 cb-rounded-full cb-bg-gray-500 cb-animate-bounce [animation-delay:-0.3s]'></div>
+		<div className='cb-w-2 cb-h-2 cb-rounded-full cb-bg-gray-500 cb-animate-bounce [animation-delay:-0.15s]'></div>
+		<div className='cb-w-2 cb-h-2 cb-rounded-full cb-bg-gray-500 cb-animate-bounce'></div>
 	</div>
 );
 

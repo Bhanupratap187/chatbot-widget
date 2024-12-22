@@ -11,20 +11,20 @@ const ChatMessage = ({ message, type }) => {
 	return (
 		<div
 			ref={containerRef}
-			className={`flex ${
-				type === "user" ? "justify-end" : "justify-start"
-			} items-end gap-2`}
+			className={`cb-flex ${
+				type === "user" ? "cb-justify-end" : "cb-justify-start"
+			} cb-items-end cb-gap-2`}
 		>
 			{type === "assistant" && (
-				<div className='h-8 w-8 flex items-center justify-center rounded-full bg-purple-600'>
-					<BotIcon className='w-5 h-5 text-white' />
+				<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600'>
+					<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 				</div>
 			)}
 			<div
-				className={`max-w-[80%] p-3 rounded-lg ${
+				className={`cb-max-w-[80%] cb-p-3 cb-rounded-lg ${
 					type === "user"
-						? "bg-purple-600 text-white rounded-br-none font-semibold text-sm"
-						: "bg-gray-100 text-gray-800 rounded-bl-none font-semibold text-sm"
+						? "cb-bg-purple-600 cb-text-white cb-rounded-br-none cb-font-semibold cb-text-sm"
+						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-font-semibold cb-text-sm"
 				}`}
 			>
 				{type === "assistant" ? displayedText : message}

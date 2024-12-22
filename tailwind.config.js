@@ -2,6 +2,7 @@
 export default {
 	content: ["./src/**/*.{js,ts,jsx,tsx}"],
 	important: "#chatbot-container",
+	prefix: "cb-",
 	theme: {
 		extend: {
 			fontFamily: {
