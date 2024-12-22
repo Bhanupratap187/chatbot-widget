@@ -45,12 +45,13 @@ export const PowerIcon = () => (
 	/>
 );
 
-export const BotIcon = () => (
+export const BotIcon = ({ onWhiteBackground = false }) => (
 	<img
 		src={createSvgUrl(
-			'<path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" />'
+			'<path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" />',
+			onWhiteBackground ? "#6B46C1" : "white"
 		)}
 		alt='Bot'
-		className='cb-w-6 cb-h-6 cb-text-current'
+		className='cb-w-6 cb-h-6'
 	/>
 );

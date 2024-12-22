@@ -114,7 +114,10 @@ const Chatbot = ({ apiKey }) => {
 				<div className='cb-bg-purple-600 cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between'>
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
-							<BotIcon className='cb-w-5 cb-h-5 cb-text-purple-600' />
+							<BotIcon
+								className='cb-w-5 cb-h-5 cb-text-purple-600'
+								onWhiteBackground={true}
+							/>
 						</div>
 						<h2 className='cb-text-white cb-text-lg cb-font-semibold'>
 							Chatbot
