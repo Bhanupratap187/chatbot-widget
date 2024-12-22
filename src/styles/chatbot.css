@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure font-family is scoped */
+& * {
+	font-family: "Montserrat", serif;
+}
+
+/* Reset any inherited styles */
 * {
+	all: initial;
 	font-family: "Montserrat", serif;
 }

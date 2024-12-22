@@ -1,3 +1,4 @@
+import "./styles/chatbot.css";
 import Chatbot from "./components/Chatbot";
 import React from "react";
 import { createRoot } from "react-dom/client";
