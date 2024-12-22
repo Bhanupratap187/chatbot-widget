@@ -38,8 +38,8 @@ async function initChatbot() {
 	try {
 		// Load React and ReactDOM from ESM builds
 		const [{ default: React }, { default: ReactDOM }] = await Promise.all([
-			import("https://esm.sh/react@18.2.0"),
-			import("https://esm.sh/react-dom@18.2.0"),
+			import("https://esm.sh/stable/react@18.2.0/es2022/react.js"),
+			import("https://esm.sh/stable/react-dom@18.2.0/es2022/react-dom.js"),
 		]);
 
 		// Load chatbot component
