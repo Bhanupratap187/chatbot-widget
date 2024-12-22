@@ -14,7 +14,7 @@ export default defineConfig({
 	build: {
 		sourcemap: false,
 		lib: {
-			entry: path.resolve(__dirname, "src/components/Chatbot/index.jsx"),
+			entry: path.resolve(__dirname, "src/widget-entry.js"),
 			name: "ChatbotWidget",
 			formats: ["iife"],
 			fileName: () => "chatbot.min.js",
