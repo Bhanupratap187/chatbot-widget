@@ -8,24 +8,29 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
 	plugins: [react()],
+	define: {
+		"process.env.NODE_ENV": JSON.stringify("production"),
+	},
 	build: {
+		sourcemap: false,
 		lib: {
 			entry: path.resolve(__dirname, "src/components/Chatbot/index.jsx"),
-			name: "Chatbot",
-			formats: ["iife", "es"],
-			fileName: (format) => `chatbot.${format}.js`,
+			name: "ChatbotWidget",
+			formats: ["iife"],
+			fileName: () => "chatbot.min.js",
 		},
 		rollupOptions: {
-			external: ["react", "react-dom", "react/jsx-runtime"],
+			external: [],
 			output: {
+				name: "ChatbotWidget",
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
-					"react/jsx-runtime": "jsxRuntime",
 				},
 			},
 		},
 	},
+	mode: "production",
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "src"),
