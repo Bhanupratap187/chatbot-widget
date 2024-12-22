@@ -12,44 +12,46 @@ function findScriptTag() {
 	return null;
 }
 
-// Load Tailwind CSS
-const tailwindLink = document.createElement("link");
-tailwindLink.href = "https://cdn.tailwindcss.com";
-tailwindLink.rel = "stylesheet";
-document.head.appendChild(tailwindLink);
+// Load dependencies and make them globally available
+async function loadDependencies() {
+	try {
+		// Import React and ReactDOM using URL imports
+		const [reactModule, reactDomModule] = await Promise.all([
+			import("https://esm.sh/react@18.2.0"),
+			import("https://esm.sh/react-dom@18.2.0/client"),
+		]);
 
-// Get API key from script tag
-const scriptTag = findScriptTag();
-if (!scriptTag) {
-	console.error(
-		"Chatbot Error: Could not find script tag. Make sure the script filename contains 'install.js' or 'chatbot-widget'"
-	);
-	throw new Error("Could not find script tag");
-}
+		// Make them globally available
+		window.React = reactModule.default;
+		window.ReactDOM = reactDomModule.default;
 
-const apiKey = scriptTag.getAttribute("data-api-key");
-if (!apiKey) {
-	console.error("Chatbot Error: API key is required");
-	throw new Error("API key is required");
+		return {
+			React: reactModule.default,
+			ReactDOM: reactDomModule.default,
+		};
+	} catch (error) {
+		console.error("Error loading dependencies:", error);
+		throw error;
+	}
 }
 
 // Initialize chatbot
 async function initChatbot() {
 	try {
-		// Load React and ReactDOM from ESM builds
-		const [{ default: React }, { default: ReactDOM }] = await Promise.all([
-			import("https://esm.sh/stable/react@18.2.0/es2022/react.js"),
-			import("https://esm.sh/stable/react-dom@18.2.0/es2022/react-dom.js"),
-		]);
+		// First load React and ReactDOM
+		const { React, ReactDOM } = await loadDependencies();
 
-		// Load chatbot component
+		// Load the chatbot component
 		const { default: Chatbot } = await import(
-			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.1.8/dist/chatbot.es.js"
+			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.2.1/dist/chatbot.es.js"
 		);
 
+		// Create container
 		const container = document.createElement("div");
+		container.id = "chatbot-container";
 		document.body.appendChild(container);
 
+		// Create root and render
 		const root = ReactDOM.createRoot(container);
 		root.render(
 			React.createElement(
@@ -66,6 +68,19 @@ async function initChatbot() {
 			name: error.name,
 		});
 	}
+}
+
+// Get API key from script tag
+const scriptTag = findScriptTag();
+if (!scriptTag) {
+	console.error("Chatbot Error: Could not find script tag");
+	throw new Error("Could not find script tag");
+}
+
+const apiKey = scriptTag.getAttribute("data-api-key");
+if (!apiKey) {
+	console.error("Chatbot Error: API key is required");
+	throw new Error("API key is required");
 }
 
 // Initialize when DOM is ready

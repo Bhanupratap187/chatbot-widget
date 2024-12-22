@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { BotIcon } from "./SvgIcons";
 import useTypewriter from "../../hooks/useTypewriter";

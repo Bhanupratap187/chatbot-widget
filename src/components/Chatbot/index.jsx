@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, React } from "react";
 import PropTypes from "prop-types";
 import { ChatWebSocket } from "../../lib/websocket";
 import ChatMessage from "./ChatMessage";
