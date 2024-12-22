@@ -12,30 +12,17 @@ export default defineConfig({
 		lib: {
 			entry: path.resolve(__dirname, "src/components/Chatbot/index.jsx"),
 			name: "Chatbot",
-			formats: ["es"],
+			formats: ["iife", "es"],
 			fileName: (format) => `chatbot.${format}.js`,
 		},
 		rollupOptions: {
-			external: [
-				"react",
-				"react-dom",
-				/^react\/.*/,
-				/^react-dom\/.*/,
-				/^@\/.*/, // Handle aliased imports
-			],
+			external: ["react", "react-dom", "react/jsx-runtime"],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
+					"react/jsx-runtime": "jsxRuntime",
 				},
-				// Ensure proper path resolution for aliased imports
-				paths: {
-					"@/*": "./src/*",
-				},
-				// Preserve modules to help with tree-shaking
-				preserveModules: false,
-				// Add exports condition to help with module resolution
-				exports: "named",
 			},
 		},
 	},

@@ -16,18 +16,21 @@ function findScriptTag() {
 async function loadDependencies() {
 	try {
 		// Import React and ReactDOM using URL imports
-		const [reactModule, reactDomModule] = await Promise.all([
+		const [reactModule, reactDomModule, jsxRuntime] = await Promise.all([
 			import("https://esm.sh/react@18.2.0"),
 			import("https://esm.sh/react-dom@18.2.0/client"),
+			import("https://esm.sh/react@18.2.0/jsx-runtime"),
 		]);
 
 		// Make them globally available
 		window.React = reactModule.default;
 		window.ReactDOM = reactDomModule.default;
+		window.jsxRuntime = jsxRuntime;
 
 		return {
 			React: reactModule.default,
 			ReactDOM: reactDomModule.default,
+			jsxRuntime,
 		};
 	} catch (error) {
 		console.error("Error loading dependencies:", error);
@@ -43,7 +46,7 @@ async function initChatbot() {
 
 		// Load the chatbot component
 		const { default: Chatbot } = await import(
-			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.2.1/dist/chatbot.es.js"
+			"https://cdn.jsdelivr.net/gh/Bhanupratap187/chatbot-widget@v1.2.2/dist/chatbot.es.js"
 		);
 
 		// Create container
