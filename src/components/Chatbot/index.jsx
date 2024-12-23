@@ -100,12 +100,12 @@ const Chatbot = ({ apiKey }) => {
 				onClick={handleToggleChat}
 				className={`${
 					isOpen ? "cb-hidden" : "cb-flex"
-				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-transparent cb-duration-200 cb-fixed cb-bottom-4 cb-right-4`}
+				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-[#ECFFE6] cb-duration-200 cb-fixed cb-bottom-4 cb-right-4 cb-rounded-full cb-shadow-[0_0_15px_5px_rgba(255,245,228,0.6)]`}
 			>
 				<img
 					src='/favicon-dark.png'
 					alt='quibbleAI'
-					className='cb-w-8 cb-h-8 cb-bg-transparent'
+					className='cb-w-8 cb-h-8'
 				/>
 			</button>
 
