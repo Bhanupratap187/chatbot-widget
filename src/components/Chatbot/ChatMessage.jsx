@@ -147,7 +147,13 @@ const ChatMessage = ({ message, type }) => {
 						{sections.map((section, index) => (
 							<React.Fragment key={index}>
 								{section.type === "text" && (
-									<p className='cb-my-2 cb-font-semibold'>{section.content}</p>
+									<p
+										className={`cb-my-2 cb-font-semibold ${
+											isUser ? "cb-text-white" : "cb-text-gray-800"
+										}`}
+									>
+										{section.content}
+									</p>
 								)}
 								{section.type === "table" && (
 									<div className='cb-my-4'>
@@ -180,7 +186,7 @@ const ChatMessage = ({ message, type }) => {
 			)}
 			<div
 				className={`cb-w-fit cb-p-3 cb-rounded-lg ${
-					type === "user"
+					isUser
 						? "cb-bg-[#BE3CEB] cb-text-white cb-rounded-br-none cb-ml-auto"
 						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto"
 				} cb-font-semibold cb-text-sm`}
