@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +10,7 @@
 
 #chatbot-container * {
 	all: initial;
-	font-family: "Montserrat", serif !important;
+	font-family: "Roboto", sans-serif !important;
 }
 
 #chatbot-container img {
@@ -115,13 +115,13 @@
 #chatbot-container .cb-chat-modal,
 #chatbot-container .cb-chat-modal-content {
 	all: revert;
-	font-family: "Montserrat", serif !important;
+	font-family: "Roboto", sans-serif !important;
 }
 
 #chatbot-container .cb-chat-modal button {
 	all: revert;
 	cursor: pointer;
-	font-family: "Montserrat", serif !important;
+	font-family: "Roboto", sans-serif !important;
 }
 
 /* Modal styles */

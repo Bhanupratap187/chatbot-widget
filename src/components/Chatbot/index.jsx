@@ -217,7 +217,7 @@ const Chatbot = ({ apiKey }) => {
 								onChange={(e) => setInputMessage(e.target.value)}
 								onKeyDown={handleKeyDown}
 								placeholder='Type a message...'
-								className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg cb-border-gray-300 focus:cb-outline-none focus:cb-border-[#BE3CEB] focus:cb-ring-1 focus:cb-ring-[#BE3CEB] cb-bg-white cb-max-h-32'
+								className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg cb-border-gray-300 focus:cb-outline-none focus:cb-border-[#BE3CEB] focus:cb-ring-1 focus:cb-ring-[#BE3CEB] cb-bg-white cb-max-h-32 cb-font-normal'
 								rows='1'
 							/>
 							<button
