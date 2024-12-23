@@ -23,7 +23,7 @@ export const SendIcon = () => (
 			'<path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" />'
 		)}
 		alt='Send'
-		className='cb-w-6 cb-h-6 cb-text-current'
+		className='cb-w-5 cb-h-5 cb-text-current'
 	/>
 );
 

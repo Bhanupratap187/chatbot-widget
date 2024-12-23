@@ -18,15 +18,15 @@ const ChatMessage = ({ message, type }) => {
 			} cb-items-end cb-gap-2 cb-mb-4`}
 		>
 			{type === "assistant" && (
-				<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600 cb-flex-shrink-0'>
+				<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-[#BE3CEB] cb-flex-shrink-0'>
 					<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 				</div>
 			)}
 			<div
 				className={`cb-max-w-[80%] cb-p-3 cb-rounded-lg ${
 					isUser
-						? "cb-bg-purple-600 cb-text-white cb-rounded-br-none cb-ml-auto" // Added cb-ml-auto
-						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto" // Added cb-mr-auto
+						? "cb-bg-[#BE3CEB] cb-text-white cb-rounded-br-none cb-ml-auto"
+						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto"
 				} cb-font-semibold cb-text-sm`}
 			>
 				{type === "assistant" ? displayedText : message}

@@ -42,6 +42,7 @@ export default defineConfig({
 		},
 		cssCodeSplit: false,
 		cssMinify: true,
+		assetsInlineLimit: 0,
 	},
 	mode: "production",
 	resolve: {

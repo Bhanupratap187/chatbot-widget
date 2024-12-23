@@ -17,12 +17,12 @@ const Chatbot = ({ apiKey }) => {
 	const [inputMessage, setInputMessage] = useState("");
 	const [isTyping, setIsTyping] = useState(false);
 	const [wsConnected, setWsConnected] = useState(false);
-	// eslint-disable-next-line no-unused-vars
 	const [manuallyEnded, setManuallyEnded] = useState(false);
 	const [isReady, setIsReady] = useState(false);
 	const chatboxRef = useRef(null);
 	const wsRef = useRef(null);
 
+	// WebSocket setup and other useEffects remain the same...
 	useEffect(() => {
 		wsRef.current = new ChatWebSocket(apiKey, {
 			onConnect: () => setWsConnected(true),
@@ -46,10 +46,9 @@ const Chatbot = ({ apiKey }) => {
 		return () => wsRef.current?.disconnect();
 	}, [apiKey]);
 
-	// Add effect to handle connection based on isOpen state
 	useEffect(() => {
 		if (isOpen && !wsConnected) {
-			wsRef.current.manuallyEnded = false; // Reset manual flag
+			wsRef.current.manuallyEnded = false;
 			wsRef.current.connect();
 		}
 	}, [isOpen, wsConnected]);
@@ -72,10 +71,6 @@ const Chatbot = ({ apiKey }) => {
 		}
 	};
 
-	Chatbot.propTypes = {
-		apiKey: PropTypes.string.isRequired,
-	};
-
 	const handleKeyDown = (e) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
@@ -85,7 +80,7 @@ const Chatbot = ({ apiKey }) => {
 
 	const handleToggleChat = () => {
 		if (!isOpen) {
-			setManuallyEnded(false); // Reset manual flag when opening
+			setManuallyEnded(false);
 		}
 		setIsOpen(!isOpen);
 	};
@@ -100,31 +95,37 @@ const Chatbot = ({ apiKey }) => {
 
 	return (
 		<div className='cb-fixed cb-bottom-4 cb-right-4 cb-z-[1000]'>
+			{/* Toggle button */}
 			<button
 				onClick={handleToggleChat}
 				className={`${
 					isOpen ? "cb-hidden" : "cb-flex"
-				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-rounded-full cb-bg-purple-600 hover:cb-bg-purple-700 cb-text-white cb-shadow-lg cb-transition-all cb-duration-200 cb-fixed cb-bottom-4 cb-right-4`}
+				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-transparent cb-duration-200 cb-fixed cb-bottom-4 cb-right-4`}
 			>
-				<MessageSquareIcon className='cb-w-6 cb-h-6' />
+				<img
+					src='/favicon-dark.png'
+					alt='quibbleAI'
+					className='cb-w-8 cb-h-8 cb-bg-transparent'
+				/>
 			</button>
+
 			{/* Chat window */}
 			<div
 				className={`${
 					isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
-				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-white cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col`}
+				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col`}
 			>
 				{/* Header */}
-				<div className='cb-bg-purple-600 cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between'>
+				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between'>
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
 							<BotIcon
-								className='cb-w-5 cb-h-5 cb-text-purple-600'
+								className='cb-w-5 cb-h-5 cb-text-[#BE3CEB]'
 								onWhiteBackground={true}
 							/>
 						</div>
 						<h2 className='cb-text-white cb-text-lg cb-font-semibold'>
-							Chatbot
+							Quibble Support
 						</h2>
 					</div>
 					<div className='cb-flex cb-items-center cb-gap-2'>
@@ -147,7 +148,7 @@ const Chatbot = ({ apiKey }) => {
 				{/* Messages area */}
 				<div
 					ref={chatboxRef}
-					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4'
+					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50'
 				>
 					{messages.map((msg, idx) => (
 						<ChatMessage
@@ -158,7 +159,7 @@ const Chatbot = ({ apiKey }) => {
 					))}
 					{isTyping && (
 						<div className='cb-flex cb-items-center cb-gap-2'>
-							<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600'>
+							<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-[#BE3CEB]'>
 								<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 							</div>
 							<TypingIndicator />
@@ -166,34 +167,36 @@ const Chatbot = ({ apiKey }) => {
 					)}
 				</div>
 
-				{/* Input area */}
-				<form
-					onSubmit={handleSubmit}
-					className='cb-p-4 cb-border-t'
-				>
-					<div className='cb-flex cb-gap-2'>
-						<textarea
-							value={inputMessage}
-							onChange={(e) => setInputMessage(e.target.value)}
-							onKeyDown={handleKeyDown}
-							placeholder='Type a message...'
-							className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg focus:cb-outline-none focus:cb-border-purple-600 cb-max-h-32'
-							rows='1'
-						/>
-						<button
-							type='submit'
-							disabled={!wsConnected}
-							className='cb-p-2 cb-text-white cb-bg-purple-600 cb-rounded-lg hover:cb-bg-purple-700 disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
-							onClick={handleSubmit}
-						>
-							<SendIcon className='cb-w-5 cb-h-5' />
-						</button>
-					</div>
-				</form>
+				{/* Input area with top shadow */}
+				<div className='cb-bg-white cb-p-4 cb-shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
+					<form
+						onSubmit={handleSubmit}
+						className='cb-relative'
+					>
+						<div className='cb-flex cb-gap-2'>
+							<textarea
+								value={inputMessage}
+								onChange={(e) => setInputMessage(e.target.value)}
+								onKeyDown={handleKeyDown}
+								placeholder='Type a message...'
+								className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg cb-border-gray-300 focus:cb-outline-none focus:cb-border-[#BE3CEB] focus:cb-ring-1 focus:cb-ring-[#BE3CEB] cb-bg-white cb-max-h-32'
+								rows='1'
+							/>
+							<button
+								type='submit'
+								disabled={!wsConnected}
+								className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
+							>
+								<SendIcon className='cb-w-5 cb-h-5' />
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	);
 };
+
 Chatbot.propTypes = {
 	apiKey: PropTypes.string.isRequired,
 };
