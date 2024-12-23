@@ -6,7 +6,11 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				motserette: ["Montserrat", "serif"],
+				roboto: ["Roboto", "sans-serif"],
+			},
+			display: {
+				table: "table",
+				"table-cell": "table-cell",
 			},
 		},
 	},

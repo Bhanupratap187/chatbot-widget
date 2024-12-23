@@ -91,13 +91,13 @@ const DataTable = ({ data }) => {
 	const headers = Object.keys(data[0]);
 	return (
 		<div className='cb-w-fit'>
-			<table className='cb-w-full cb-border-collapse cb-text-sm'>
+			<table className='cb-w-full cb-border-collapse cb-text-sm cb-table'>
 				<thead>
 					<tr className='cb-bg-purple-100'>
 						{headers.map((header) => (
 							<th
 								key={header}
-								className='cb-border cb-border-purple-200 cb-p-2 cb-text-left cb-font-semibold cb-text-gray-800'
+								className='cb-border cb-border-purple-200 cb-p-2 cb-text-left cb-font-semibold cb-text-gray-800 cb-table-cell'
 							>
 								{header.charAt(0).toUpperCase() + header.slice(1)}
 							</th>
@@ -113,7 +113,7 @@ const DataTable = ({ data }) => {
 							{headers.map((header) => (
 								<td
 									key={header}
-									className='cb-border cb-border-purple-200 cb-p-2 cb-text-sm cb-text-gray-800'
+									className='cb-border cb-border-purple-200 cb-p-2 cb-text-sm cb-text-gray-800 cb-table-cell'
 								>
 									{row[header]}
 								</td>

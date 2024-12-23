@@ -8,10 +8,33 @@
 	all: initial;
 }
 
-#chatbot-container * {
+#chatbot-container *:not(table):not(thead):not(tbody):not(tr):not(th):not(td) {
 	all: initial;
 	font-family: "Roboto", sans-serif !important;
 	box-sizing: border-box !important;
+}
+
+#chatbot-container table {
+	display: table !important;
+	border-collapse: collapse !important;
+	width: 100% !important;
+}
+
+#chatbot-container th,
+#chatbot-container td {
+	display: table-cell !important;
+}
+
+#chatbot-container tr {
+	display: table-row !important;
+}
+
+#chatbot-container thead {
+	display: table-header-group !important;
+}
+
+#chatbot-container tbody {
+	display: table-row-group !important;
 }
 
 #chatbot-container img {
