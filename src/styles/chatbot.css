@@ -18,19 +18,41 @@
 	display: table !important;
 	border-collapse: collapse !important;
 	width: 100% !important;
+	margin: 0 !important;
+	border-spacing: 0 !important;
+	border: 1px solid #e5e7eb !important;
+	background-color: white !important;
 }
 
-#chatbot-container th,
+#chatbot-container th {
+	display: table-cell !important;
+	padding: 0.5rem !important;
+	text-align: left !important;
+	font-weight: 600 !important;
+	background-color: #f3e8ff !important;
+	border: 1px solid #e5e7eb !important;
+	color: #1f2937 !important;
+}
+
 #chatbot-container td {
 	display: table-cell !important;
+	padding: 0.5rem !important;
+	border: 1px solid #e5e7eb !important;
+	color: #374151 !important;
 }
 
 #chatbot-container tr {
 	display: table-row !important;
+	border-bottom: 1px solid #e5e7eb !important;
+}
+
+#chatbot-container tr:nth-child(even) {
+	background-color: #faf5ff !important;
 }
 
 #chatbot-container thead {
 	display: table-header-group !important;
+	border-bottom: 2px solid #e5e7eb !important;
 }
 
 #chatbot-container tbody {
