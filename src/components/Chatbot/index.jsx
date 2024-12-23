@@ -213,8 +213,8 @@ const Chatbot = ({ apiKey }) => {
 					<div className='cb-chat-modal'>
 						<div className='cb-chat-modal-content'>
 							<p className='cb-mb-4 cb-font-medium'>
-								Previous session has Ended. If you want further assistance
-								please start again.
+								The last session is over. Please start over if you require
+								further help.
 							</p>
 							<div className='cb-flex cb-items-center cb-justify-center cb-gap-2'>
 								<button

@@ -88,7 +88,7 @@ export class ChatWebSocket {
 			console.log("Connection closed due to inactivity");
 			this.handlers.onSessionEnd?.();
 			this.disconnect();
-		}, 600000);
+		}, 2000);
 	}
 
 	sendMessage(message) {
