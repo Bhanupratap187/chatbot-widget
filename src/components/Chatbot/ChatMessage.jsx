@@ -97,7 +97,7 @@ const DataTable = ({ data }) => {
 						{headers.map((header) => (
 							<th
 								key={header}
-								className='cb-border cb-border-purple-200 cb-p-2 cb-text-left cb-font-semibold'
+								className='cb-border cb-border-purple-200 cb-p-2 cb-text-left cb-font-semibold cb-text-gray-800'
 							>
 								{header.charAt(0).toUpperCase() + header.slice(1)}
 							</th>
@@ -113,7 +113,7 @@ const DataTable = ({ data }) => {
 							{headers.map((header) => (
 								<td
 									key={header}
-									className='cb-border cb-border-purple-200 cb-p-2 cb-text-sm'
+									className='cb-border cb-border-purple-200 cb-p-2 cb-text-sm cb-text-gray-800'
 								>
 									{row[header]}
 								</td>
@@ -139,13 +139,15 @@ const ChatMessage = ({ message, type }) => {
 			try {
 				const sections = findJsonSections(message);
 				return (
-					<div className='cb-w-fit'>
+					<div
+						className={`cb-w-fit ${
+							isUser ? "cb-text-white" : "cb-text-gray-800"
+						}`}
+					>
 						{sections.map((section, index) => (
 							<React.Fragment key={index}>
 								{section.type === "text" && (
-									<p className='cb-my-2 cb-font-semibold cb-text-gray-800'>
-										{section.content}
-									</p>
+									<p className='cb-my-2 cb-font-semibold'>{section.content}</p>
 								)}
 								{section.type === "table" && (
 									<div className='cb-my-4'>
@@ -178,7 +180,7 @@ const ChatMessage = ({ message, type }) => {
 			)}
 			<div
 				className={`cb-w-fit cb-p-3 cb-rounded-lg ${
-					isUser
+					type === "user"
 						? "cb-bg-[#BE3CEB] cb-text-white cb-rounded-br-none cb-ml-auto"
 						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto"
 				} cb-font-semibold cb-text-sm`}
