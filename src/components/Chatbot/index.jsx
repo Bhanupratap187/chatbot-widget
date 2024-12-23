@@ -152,7 +152,14 @@ const Chatbot = ({ apiKey }) => {
 							type={msg.role === "user" ? "user" : "assistant"}
 						/>
 					))}
-					{isTyping && <TypingIndicator />}
+					{isTyping && (
+						<div className='cb-flex cb-items-center cb-gap-2'>
+							<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600'>
+								<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
+							</div>
+							<TypingIndicator />
+						</div>
+					)}
 				</div>
 
 				{/* Input area */}

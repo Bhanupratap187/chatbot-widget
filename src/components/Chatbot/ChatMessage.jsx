@@ -25,7 +25,7 @@ const ChatMessage = ({ message, type }) => {
 					type === "user"
 						? "cb-bg-purple-600 cb-text-white cb-rounded-br-none cb-font-semibold cb-text-sm"
 						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-font-semibold cb-text-sm"
-				}`}
+				} cb-w-full`}
 			>
 				{type === "assistant" ? displayedText : message}
 			</div>

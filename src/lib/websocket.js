@@ -75,7 +75,7 @@ export class ChatWebSocket {
 		this.inactivityTimeout = setTimeout(() => {
 			console.log("Connection closed due to inactivity");
 			this.disconnect();
-		}, 120000); // 2 minutes
+		}, 600000); // 2 minutes
 	}
 
 	sendMessage(message) {
