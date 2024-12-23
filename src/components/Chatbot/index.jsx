@@ -19,6 +19,7 @@ const Chatbot = ({ apiKey }) => {
 	const [wsConnected, setWsConnected] = useState(false);
 	// eslint-disable-next-line no-unused-vars
 	const [manuallyEnded, setManuallyEnded] = useState(false);
+	const [isReady, setIsReady] = useState(false);
 	const chatboxRef = useRef(null);
 	const wsRef = useRef(null);
 
@@ -36,6 +37,9 @@ const Chatbot = ({ apiKey }) => {
 			},
 			onLocalMessage: (message) => {
 				setMessages((prev) => [...prev, { role: "user", content: message }]);
+			},
+			onReady: () => {
+				setIsReady(true);
 			},
 		});
 
@@ -58,7 +62,7 @@ const Chatbot = ({ apiKey }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!inputMessage.trim() || !wsConnected) return;
+		if (!inputMessage.trim() || !wsConnected || !isReady) return;
 
 		try {
 			wsRef.current.sendMessage(inputMessage);

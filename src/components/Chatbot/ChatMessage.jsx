@@ -8,24 +8,26 @@ const ChatMessage = ({ message, type }) => {
 		type === "assistant" ? message : ""
 	);
 
+	const isUser = type === "user";
+
 	return (
 		<div
 			ref={containerRef}
 			className={`cb-flex ${
-				type === "user" ? "cb-justify-end" : "cb-justify-start"
-			} cb-items-end cb-gap-2`}
+				isUser ? "cb-flex-row-reverse" : "cb-flex-row"
+			} cb-items-end cb-gap-2 cb-mb-4`}
 		>
 			{type === "assistant" && (
-				<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600'>
+				<div className='cb-h-8 cb-w-8 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-purple-600 cb-flex-shrink-0'>
 					<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 				</div>
 			)}
 			<div
 				className={`cb-max-w-[80%] cb-p-3 cb-rounded-lg ${
-					type === "user"
-						? "cb-bg-purple-600 cb-text-white cb-rounded-br-none cb-font-semibold cb-text-sm"
-						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-font-semibold cb-text-sm"
-				} cb-w-full`}
+					isUser
+						? "cb-bg-purple-600 cb-text-white cb-rounded-br-none cb-ml-auto" // Added cb-ml-auto
+						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto" // Added cb-mr-auto
+				} cb-font-semibold cb-text-sm`}
 			>
 				{type === "assistant" ? displayedText : message}
 			</div>

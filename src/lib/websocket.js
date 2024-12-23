@@ -18,7 +18,9 @@ export class ChatWebSocket {
 		this.manuallyEnded = false;
 		console.log("Connecting to WebSocket...");
 
-		this.ws = new WebSocket(`ws://localhost:3333/ws?apiKey=${this.apiKey}`);
+		this.ws = new WebSocket(
+			`wss://stage-chatbox.quibbleai.io:3333/ws?apiKey=${this.apiKey}`
+		);
 
 		this.ws.onopen = () => {
 			console.log("WebSocket connected");
@@ -72,10 +74,20 @@ export class ChatWebSocket {
 		if (this.inactivityTimeout) {
 			clearTimeout(this.inactivityTimeout);
 		}
+		// Send keepAlive event after 1 minute of inactivity
+		this.inactivityTimeout = setTimeout(() => {
+			const keepAlivePayload = {
+				event: "keepAlive",
+			};
+			console.log("Sending keepAlive event");
+			this.ws.send(JSON.stringify(keepAlivePayload));
+		}, 50000);
+
+		// Close connection after 10 minutes of inactivity
 		this.inactivityTimeout = setTimeout(() => {
 			console.log("Connection closed due to inactivity");
 			this.disconnect();
-		}, 600000); // 2 minutes
+		}, 600000);
 	}
 
 	sendMessage(message) {
