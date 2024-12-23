@@ -128,6 +128,7 @@ const DataTable = ({ data }) => {
 
 const ChatMessage = ({ message, type }) => {
 	const isUser = type === "user";
+	console.log(isUser);
 	const hasTableData = message.includes("[") || message.includes("- {");
 	const { displayedText, containerRef } = useTypewriter(
 		type === "assistant" && !hasTableData ? message : ""
