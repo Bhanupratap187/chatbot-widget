@@ -161,9 +161,7 @@ const Chatbot = ({ apiKey }) => {
 				{/* Messages area */}
 				<div
 					ref={chatboxRef}
-					className={`cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 ${
-						sessionEnded ? "cb-blur" : ""
-					}`}
+					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages'
 				>
 					{messages.map((msg, idx) => (
 						<ChatMessage
@@ -178,6 +176,28 @@ const Chatbot = ({ apiKey }) => {
 								<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 							</div>
 							<TypingIndicator />
+						</div>
+					)}
+					{sessionEnded && (
+						<div className='cb-session-ended'>
+							<p className='cb-session-ended-text'>
+								The last session is over. Please start over if you require
+								further help.
+							</p>
+							<div className='cb-session-ended-buttons'>
+								<button
+									onClick={handleRestartChat}
+									className='cb-session-button cb-start-again'
+								>
+									Start Again
+								</button>
+								<button
+									onClick={handleEndChat}
+									className='cb-session-button cb-cancel'
+								>
+									Cancel
+								</button>
+							</div>
 						</div>
 					)}
 				</div>
@@ -208,31 +228,6 @@ const Chatbot = ({ apiKey }) => {
 					</form>
 				</div>
 			</div>
-			{/* Modal */}
-			{sessionEnded && (
-				<div className='cb-chat-modal'>
-					<div className='cb-chat-modal-content'>
-						<p className='cb-mb-4 cb-font-medium'>
-							The last session is over. Please start over if you require further
-							help.
-						</p>
-						<div className='cb-flex cb-items-center cb-justify-center cb-gap-2'>
-							<button
-								onClick={handleRestartChat}
-								className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-md hover:cb-bg-[#ac2adb] cb-transition-colors cb-text-sm'
-							>
-								Start Again
-							</button>
-							<button
-								onClick={handleEndChat}
-								className='cb-bg-red-500 cb-text-white cb-py-2 cb-px-3 cb-rounded-md hover:cb-bg-red-400 cb-transition-colors cb-text-sm'
-							>
-								Cancel
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };

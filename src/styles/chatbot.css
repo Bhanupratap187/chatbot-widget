@@ -40,40 +40,61 @@
 	animation: bounce 0.6s infinite;
 }
 
-/* New modal styles for chat widget */
-
-.cb-chat-modal {
-	position: fixed;
-	bottom: 100px;
-	right: 20px;
-	width: 400px;
-	height: auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 1000;
-	border-radius: 8px;
-	overflow: hidden;
+/* Remove the modal styles and add styles for session-ended state */
+.cb-chat-messages {
+	position: relative !important;
 }
 
-.cb-chat-modal-content {
-	background-color: white;
-	padding: 1.25rem;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-		0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	text-align: center;
-	width: 80%;
-	max-width: 300px;
-	margin: 0 auto;
-	position: relative;
-	z-index: 1001;
+.cb-session-ended {
+	position: absolute !important;
+	inset: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background-color: rgba(255, 255, 255, 0.85) !important;
+	z-index: 10 !important;
+	padding: 1.25rem !important;
+	text-align: center !important;
 }
 
-.cb-blur {
-	filter: blur(4px);
-	pointer-events: none;
+.cb-session-ended-text {
+	margin-bottom: 1rem !important;
+	font-size: 1rem !important;
+	color: #333 !important;
+	font-weight: 500 !important;
+	line-height: 1.5 !important;
+}
+
+.cb-session-ended-buttons {
+	display: flex !important;
+	gap: 0.75rem !important;
+}
+
+.cb-session-button {
+	padding: 0.5rem 1.25rem !important;
+	border-radius: 0.375rem !important;
+	font-size: 0.875rem !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	transition: all 0.2s !important;
+}
+
+.cb-start-again {
+	background-color: #9333ea !important; /* Purple */
+	color: white !important;
+	border: none !important;
+}
+
+.cb-cancel {
+	background-color: #ef4444 !important; /* Red */
+	color: white !important;
+	border: none !important;
+}
+
+.cb-start-again:hover,
+.cb-cancel:hover {
+	opacity: 0.9 !important;
 }
 
 /* Ensure the chat window maintains proper stacking context */
