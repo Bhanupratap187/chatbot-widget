@@ -213,15 +213,23 @@ const Chatbot = ({ apiKey }) => {
 					<div className='cb-chat-modal'>
 						<div className='cb-chat-modal-content'>
 							<p className='cb-mb-4 cb-font-medium'>
-								Session ended. If you want to start again, click the button
-								below.
+								Previous session has Ended. If you want further assistance
+								please start again.
 							</p>
-							<button
-								onClick={handleRestartChat}
-								className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-lg hover:cb-bg-[#ac2adb] cb-transition-colors'
-							>
-								Start Again
-							</button>
+							<div className='cb-flex cb-items-center cb-justify-center cb-gap-2'>
+								<button
+									onClick={handleRestartChat}
+									className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-md hover:cb-bg-[#ac2adb] cb-transition-colors cb-text-sm'
+								>
+									Start Again
+								</button>
+								<button
+									onClick={handleEndChat}
+									className='cb-bg-red-500 cb-text-white cb-py-2 cb-px-3 cb-rounded-md hover:cb-bg-red-400 cb-transition-colors cb-text-sm'
+								>
+									Cancel
+								</button>
+							</div>
 						</div>
 					</div>
 				)}
