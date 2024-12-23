@@ -128,7 +128,6 @@ const DataTable = ({ data }) => {
 
 const ChatMessage = ({ message, type }) => {
 	const isUser = type === "user";
-	console.log(isUser);
 	const hasTableData = message.includes("[") || message.includes("- {");
 	const { displayedText, containerRef } = useTypewriter(
 		type === "assistant" && !hasTableData ? message : ""
@@ -169,14 +168,20 @@ const ChatMessage = ({ message, type }) => {
 				return <span>{message}</span>;
 			}
 		}
-		return <span>{type === "assistant" ? displayedText : message}</span>;
+		return (
+			<span className={isUser ? "cb-text-white" : "cb-text-gray-800"}>
+				{type === "assistant" ? displayedText : message}
+			</span>
+		);
 	};
 
 	return (
 		<div
 			ref={containerRef}
 			className={`cb-flex ${
-				isUser ? "cb-flex-row-reverse" : "cb-flex-row"
+				isUser
+					? "cb-flex-row-reverse cb-text-white"
+					: "cb-flex-row cb-text-gray-800"
 			} cb-items-end cb-gap-2 cb-mb-4`}
 		>
 			{type === "assistant" && (

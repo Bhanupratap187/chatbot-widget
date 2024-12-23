@@ -162,12 +162,6 @@
 	justify-content: center !important;
 }
 
-#chatbot-container .cb-flex-row-reverse .cb-bg-\[\#BE3CEB\] {
-	background-color: #be3ceb !important;
-	color: white !important;
-	border: none !important;
-}
-
 #chatbot-container textarea {
 	border: 1px solid #e5e7eb !important;
 	background-color: white !important;
