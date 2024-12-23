@@ -19,10 +19,10 @@ const Chatbot = ({ apiKey }) => {
 	const [wsConnected, setWsConnected] = useState(false);
 	const [manuallyEnded, setManuallyEnded] = useState(false);
 	const [isReady, setIsReady] = useState(false);
+	const [sessionEnded, setSessionEnded] = useState(false);
 	const chatboxRef = useRef(null);
 	const wsRef = useRef(null);
 
-	// WebSocket setup and other useEffects remain the same...
 	useEffect(() => {
 		wsRef.current = new ChatWebSocket(apiKey, {
 			onConnect: () => setWsConnected(true),
@@ -40,6 +40,9 @@ const Chatbot = ({ apiKey }) => {
 			},
 			onReady: () => {
 				setIsReady(true);
+			},
+			onSessionEnd: () => {
+				setSessionEnded(true);
 			},
 		});
 
@@ -93,6 +96,13 @@ const Chatbot = ({ apiKey }) => {
 		setManuallyEnded(true);
 	};
 
+	const handleRestartChat = () => {
+		setMessages([]);
+		setWsConnected(false);
+		setSessionEnded(false);
+		wsRef.current.connect();
+	};
+
 	return (
 		<div className='cb-fixed cb-bottom-4 cb-right-4 cb-z-[1000]'>
 			{/* Toggle button */}
@@ -113,10 +123,10 @@ const Chatbot = ({ apiKey }) => {
 			<div
 				className={`${
 					isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
-				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col`}
+				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col cb-relative`}
 			>
 				{/* Header */}
-				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between'>
+				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between cb-z-20'>
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
 							<BotIcon
@@ -124,8 +134,11 @@ const Chatbot = ({ apiKey }) => {
 								onWhiteBackground={true}
 							/>
 						</div>
-						<h2 className='cb-text-white cb-text-lg cb-font-semibold'>
+						<h2 className='cb-text-white cb-flex cb-items-center cb-justify-center cb-text-lg cb-font-semibold'>
 							Quibble Support
+							{wsConnected && isReady && (
+								<span className='cb-inline-block cb-w-2 cb-h-2 cb-rounded-full cb-bg-green-400 cb-ml-2' />
+							)}
 						</h2>
 					</div>
 					<div className='cb-flex cb-items-center cb-gap-2'>
@@ -148,7 +161,9 @@ const Chatbot = ({ apiKey }) => {
 				{/* Messages area */}
 				<div
 					ref={chatboxRef}
-					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50'
+					className={`cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 ${
+						sessionEnded ? "cb-blur" : ""
+					}`}
 				>
 					{messages.map((msg, idx) => (
 						<ChatMessage
@@ -167,8 +182,8 @@ const Chatbot = ({ apiKey }) => {
 					)}
 				</div>
 
-				{/* Input area with top shadow */}
-				<div className='cb-bg-white cb-p-4 cb-shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'>
+				{/* Input area */}
+				<div className='cb-bg-white cb-p-4 cb-shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] cb-z-20'>
 					<form
 						onSubmit={handleSubmit}
 						className='cb-relative'
@@ -192,6 +207,24 @@ const Chatbot = ({ apiKey }) => {
 						</div>
 					</form>
 				</div>
+
+				{/* Modal */}
+				{sessionEnded && (
+					<div className='cb-chat-modal'>
+						<div className='cb-chat-modal-content'>
+							<p className='cb-mb-4 cb-font-medium'>
+								Session ended. If you want to start again, click the button
+								below.
+							</p>
+							<button
+								onClick={handleRestartChat}
+								className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-lg hover:cb-bg-[#ac2adb] cb-transition-colors'
+							>
+								Start Again
+							</button>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

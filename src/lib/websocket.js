@@ -86,6 +86,7 @@ export class ChatWebSocket {
 		// Close connection after 10 minutes of inactivity
 		this.inactivityTimeout = setTimeout(() => {
 			console.log("Connection closed due to inactivity");
+			this.handlers.onSessionEnd?.();
 			this.disconnect();
 		}, 600000);
 	}
