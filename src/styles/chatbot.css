@@ -43,53 +43,53 @@
 /* New modal styles for chat widget */
 
 .cb-chat-modal {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 1000;
-	border-radius: 8px;
-	overflow: hidden;
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+	z-index: 1000 !important;
+	border-radius: 8px !important;
+	overflow: hidden !important;
 }
 
 .cb-chat-modal-content {
-	background-color: white;
-	padding: 1.25rem;
-	border-radius: 8px;
+	background-color: white !important;
+	padding: 1.25rem !important;
+	border-radius: 8px !important;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-		0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	text-align: center;
-	width: 80%;
-	max-width: 300px;
-	margin: 0 auto;
-	position: relative;
-	z-index: 1001;
+		0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+	text-align: center !important;
+	width: 80% !important;
+	max-width: 300px !important;
+	margin: 0 auto !important;
+	position: relative !important;
+	z-index: 1001 !important;
 }
 
 .cb-blur {
-	filter: blur(4px);
-	pointer-events: none;
+	filter: blur(4px) !important;
+	pointer-events: none !important;
 }
 
 /* Ensure the chat window maintains proper stacking context */
 #chatbot-container {
-	isolation: isolate;
+	isolation: isolate !important;
 }
 
 /* Additional reset styles to prevent inheritance issues */
 #chatbot-container .cb-chat-modal,
 #chatbot-container .cb-chat-modal-content {
-	all: revert;
+	all: revert !important;
 	font-family: "Montserrat", serif !important;
 }
 
 #chatbot-container .cb-chat-modal button {
-	all: revert;
-	cursor: pointer;
+	all: revert !important;
+	cursor: pointer !important;
 	font-family: "Montserrat", serif !important;
 }

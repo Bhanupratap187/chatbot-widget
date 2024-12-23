@@ -207,33 +207,32 @@ const Chatbot = ({ apiKey }) => {
 						</div>
 					</form>
 				</div>
-
-				{/* Modal */}
-				{sessionEnded && (
-					<div className='cb-chat-modal'>
-						<div className='cb-chat-modal-content'>
-							<p className='cb-mb-4 cb-font-medium'>
-								The last session is over. Please start over if you require
-								further help.
-							</p>
-							<div className='cb-flex cb-items-center cb-justify-center cb-gap-2'>
-								<button
-									onClick={handleRestartChat}
-									className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-md hover:cb-bg-[#ac2adb] cb-transition-colors cb-text-sm'
-								>
-									Start Again
-								</button>
-								<button
-									onClick={handleEndChat}
-									className='cb-bg-red-500 cb-text-white cb-py-2 cb-px-3 cb-rounded-md hover:cb-bg-red-400 cb-transition-colors cb-text-sm'
-								>
-									Cancel
-								</button>
-							</div>
+			</div>
+			{/* Modal */}
+			{sessionEnded && (
+				<div className='cb-chat-modal'>
+					<div className='cb-chat-modal-content'>
+						<p className='cb-mb-4 cb-font-medium'>
+							The last session is over. Please start over if you require further
+							help.
+						</p>
+						<div className='cb-flex cb-items-center cb-justify-center cb-gap-2'>
+							<button
+								onClick={handleRestartChat}
+								className='cb-bg-[#BE3CEB] cb-text-white cb-p-2 cb-rounded-md hover:cb-bg-[#ac2adb] cb-transition-colors cb-text-sm'
+							>
+								Start Again
+							</button>
+							<button
+								onClick={handleEndChat}
+								className='cb-bg-red-500 cb-text-white cb-py-2 cb-px-3 cb-rounded-md hover:cb-bg-red-400 cb-transition-colors cb-text-sm'
+							>
+								Cancel
+							</button>
 						</div>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 };
