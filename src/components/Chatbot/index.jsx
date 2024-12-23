@@ -125,6 +125,31 @@ const Chatbot = ({ apiKey }) => {
 					isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
 				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col cb-relative`}
 			>
+				{sessionEnded && (
+					<div className='cb-modal-backdrop'>
+						<div className='cb-modal-content'>
+							<p className='cb-session-ended-text'>
+								The last session is over. Please start over if you require
+								further help.
+							</p>
+							<div className='cb-session-ended-buttons'>
+								<button
+									onClick={handleRestartChat}
+									className='cb-session-button cb-start-again'
+								>
+									Start Again
+								</button>
+								<button
+									onClick={handleEndChat}
+									className='cb-session-button cb-cancel'
+								>
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				)}
+
 				{/* Header */}
 				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between cb-z-20'>
 					<div className='cb-flex cb-items-center cb-gap-2'>
@@ -176,28 +201,6 @@ const Chatbot = ({ apiKey }) => {
 								<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 							</div>
 							<TypingIndicator />
-						</div>
-					)}
-					{sessionEnded && (
-						<div className='cb-session-ended'>
-							<p className='cb-session-ended-text'>
-								The last session is over. Please start over if you require
-								further help.
-							</p>
-							<div className='cb-session-ended-buttons'>
-								<button
-									onClick={handleRestartChat}
-									className='cb-session-button cb-start-again'
-								>
-									Start Again
-								</button>
-								<button
-									onClick={handleEndChat}
-									className='cb-session-button cb-cancel'
-								>
-									Cancel
-								</button>
-							</div>
 						</div>
 					)}
 				</div>

@@ -47,23 +47,32 @@
 
 .cb-session-ended {
 	position: absolute !important;
-	inset: 0 !important;
+	left: 1rem !important;
+	right: 1rem !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
 	display: flex !important;
 	flex-direction: column !important;
 	align-items: center !important;
 	justify-content: center !important;
-	background-color: rgba(255, 255, 255, 0.85) !important;
+	background-color: rgba(255, 255, 255, 0.95) !important;
+	border-radius: 0.5rem !important;
 	z-index: 10 !important;
-	padding: 1.25rem !important;
+	padding: 1.5rem !important;
 	text-align: center !important;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
 .cb-session-ended-text {
-	margin-bottom: 1rem !important;
+	margin-bottom: 1.25rem !important;
 	font-size: 1rem !important;
 	color: #333 !important;
 	font-weight: 500 !important;
 	line-height: 1.5 !important;
+	max-width: 280px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 
 .cb-session-ended-buttons {
@@ -113,4 +122,41 @@
 	all: revert;
 	cursor: pointer;
 	font-family: "Montserrat", serif !important;
+}
+
+/* Modal styles */
+.cb-modal-backdrop {
+	position: absolute !important;
+	inset: 0 !important;
+	background-color: rgba(0, 0, 0, 0.1) !important;
+	backdrop-filter: blur(4px) !important;
+	z-index: 50 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	border-radius: 0.5rem !important;
+}
+
+.cb-modal-content {
+	background-color: white !important;
+	border-radius: 0.5rem !important;
+	padding: 1.5rem !important;
+	width: 90% !important;
+	max-width: 320px !important;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.cb-session-ended-text {
+	margin-bottom: 1.25rem !important;
+	font-size: 1rem !important;
+	color: #333 !important;
+	font-weight: 500 !important;
+	line-height: 1.5 !important;
+}
+
+.cb-session-ended-buttons {
+	display: flex !important;
+	gap: 0.75rem !important;
+	justify-content: center !important;
 }
