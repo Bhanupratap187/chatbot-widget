@@ -10,6 +10,7 @@ import {
 	BotIcon,
 } from "./SvgIcons";
 import TypingIndicator from "./TypingIndicator";
+import favicon from "../../assets/images/favicon-dark.png";
 
 const Chatbot = ({ apiKey }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -113,7 +114,7 @@ const Chatbot = ({ apiKey }) => {
 				} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-[#ECFFE6] cb-duration-200 cb-fixed cb-bottom-4 cb-right-4 cb-rounded-full cb-shadow-[0_0_15px_5px_rgba(255,245,228,0.6)]`}
 			>
 				<img
-					src='/favicon-dark.png'
+					src={favicon || "/favicon-dark.png"}
 					alt='quibbleAI'
 					className='cb-w-8 cb-h-8'
 				/>
@@ -151,7 +152,7 @@ const Chatbot = ({ apiKey }) => {
 				)}
 
 				{/* Header */}
-				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between cb-z-20'>
+				<div className='cb-bg-[#BE3CEB] cb-p-4 cb-rounded-t-lg cb-flex cb-items-center cb-justify-between cb-z-50'>
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
 							<BotIcon
@@ -186,7 +187,7 @@ const Chatbot = ({ apiKey }) => {
 				{/* Messages area */}
 				<div
 					ref={chatboxRef}
-					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages'
+					className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages cb-z-50'
 				>
 					{messages.map((msg, idx) => (
 						<ChatMessage
