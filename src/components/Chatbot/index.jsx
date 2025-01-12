@@ -126,7 +126,7 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 				<img
 					src={favicon || "/favicon-dark.png"}
 					alt='quibbleAI'
-					className='cb-w-8 cb-h-8'
+					className='cb-w-8 cb-h-8 cb-cursor-pointer'
 				/>
 			</button>
 
@@ -166,7 +166,7 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<div className='cb-h-7 cb-w-7 cb-flex cb-items-center cb-justify-center cb-rounded-full cb-bg-white'>
 							<BotIcon
-								className='cb-w-5 cb-h-5 cb-text-[#BE3CEB]'
+								className='cb-w-5 cb-h-5 cb-text-[#BE3CEB] cb-cursor-pointer'
 								onWhiteBackground={true}
 							/>
 						</div>
@@ -180,16 +180,17 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 					<div className='cb-flex cb-items-center cb-gap-2'>
 						<button
 							onClick={handleEndChat}
-							className='cb-text-white hover:cb-text-red-200 cb-transition-colors'
+							className='cb-text-white hover:cb-text-red-200 cb-transition-colors cb-cursor-pointer'
 							title='End Chat'
 						>
-							<PowerIcon className='cb-w-6 cb-h-6' />
+							<PowerIcon className='cb-w-6 cb-h-6 cb-cursor-pointer' />
 						</button>
 						<button
 							onClick={() => setIsOpen(false)}
-							className='cb-text-white hover:cb-text-purple-200 cb-transition-colors'
+							className='cb-text-white hover:cb-text-purple-200 cb-transition-colors cb-cursor-pointer'
+							title='Close Chat'
 						>
-							<XIcon className='cb-w-6 cb-h-6' />
+							<XIcon className='cb-w-6 cb-h-6 cb-cursor-pointer' />
 						</button>
 					</div>
 				</div>
