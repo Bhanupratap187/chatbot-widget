@@ -133,8 +133,10 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 
 				{/* Chat window */}
 				<div
-					className={`cb-chat-window cb-absolute cb-bottom-0 cb-right-16 cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col ${
-						isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
+					className={`cb-chat-window cb-fixed cb-bottom-4 cb-right-[4.5rem] cb-origin-bottom-left cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col ${
+						isOpen
+							? "cb-scale-100 cb-opacity-100 cb-translate-y-0"
+							: "cb-scale-95 cb-opacity-0 cb-translate-y-4"
 					}`}
 				>
 					{sessionEnded && (

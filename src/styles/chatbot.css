@@ -228,9 +228,10 @@
 /* Add these new styles */
 .cb-chat-window {
 	pointer-events: auto !important;
-	transform-origin: bottom right !important;
+	transform-origin: bottom left !important;
 	z-index: 9999 !important;
-	margin-right: 1rem !important; /* Add space between window and button */
+	max-height: calc(100vh - 5rem) !important; /* Prevent overflow */
+	max-width: min(400px, calc(100vw - 5rem)) !important; /* Responsive width */
 }
 
 /* Ensure modal stays on top */
