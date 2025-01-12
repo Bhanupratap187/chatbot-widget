@@ -6,6 +6,9 @@
 
 #chatbot-container {
 	all: initial;
+	isolation: isolate;
+	position: relative;
+	z-index: 9999;
 }
 
 #chatbot-container *:not(table):not(thead):not(tbody):not(tr):not(th):not(td) {
@@ -219,4 +222,16 @@
 	border-color: #be3ceb !important;
 	outline: none !important;
 	/* ring: 1px #be3ceb !important; */
+}
+
+/* Add these new styles */
+.cb-chat-window {
+	position: fixed !important;
+	isolation: isolate !important;
+	z-index: 9999 !important;
+}
+
+/* Ensure modal stays on top */
+.cb-modal-backdrop {
+	z-index: 10000 !important;
 }

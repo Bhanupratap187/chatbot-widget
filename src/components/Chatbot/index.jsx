@@ -115,7 +115,7 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 	};
 
 	return (
-		<div className='cb-fixed cb-bottom-4 cb-right-4 cb-z-[1000]'>
+		<div className='cb-fixed cb-bottom-4 cb-right-4 cb-z-[9999] cb-isolate'>
 			{/* Toggle button */}
 			<button
 				onClick={handleToggleChat}
@@ -134,7 +134,7 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 			<div
 				className={`${
 					isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
-				} cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col cb-relative`}
+				} cb-chat-window cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col cb-relative`}
 			>
 				{sessionEnded && (
 					<div className='cb-modal-backdrop'>
