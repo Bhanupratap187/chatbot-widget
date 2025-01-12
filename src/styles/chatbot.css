@@ -5,10 +5,11 @@
 @tailwind utilities;
 
 #chatbot-container {
-	all: initial;
-	isolation: isolate;
-	position: relative;
-	z-index: 9999;
+	position: fixed !important;
+	inset: 0 !important;
+	pointer-events: none !important;
+	z-index: 9999 !important;
+	isolation: isolate !important;
 }
 
 #chatbot-container *:not(table):not(thead):not(tbody):not(tr):not(th):not(td) {
@@ -226,8 +227,8 @@
 
 /* Add these new styles */
 .cb-chat-window {
-	position: fixed !important;
-	isolation: isolate !important;
+	pointer-events: auto !important;
+	transform-origin: bottom right !important;
 	z-index: 9999 !important;
 }
 
