@@ -120,9 +120,9 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 				{/* Toggle button */}
 				<button
 					onClick={handleToggleChat}
-					className={`${
-						isOpen ? "cb-hidden" : "cb-flex"
-					} cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-[#ECFFE6] cb-duration-200 cb-fixed cb-bottom-4 cb-right-4 cb-rounded-full cb-shadow-[0_0_15px_5px_rgba(255,245,228,0.6)]`}
+					className={`cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-[#ECFFE6] cb-duration-200 cb-rounded-full cb-shadow-[0_0_15px_5px_rgba(255,245,228,0.6)] ${
+						isOpen ? "cb-opacity-0" : "cb-flex cb-opacity-100"
+					}`}
 				>
 					<img
 						src={favicon || "/favicon-dark.png"}
@@ -133,9 +133,9 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 
 				{/* Chat window */}
 				<div
-					className={`${
+					className={`cb-chat-window cb-absolute cb-bottom-0 cb-right-16 cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col ${
 						isOpen ? "cb-scale-100 cb-opacity-100" : "cb-scale-0 cb-opacity-0"
-					} cb-chat-window cb-fixed cb-bottom-20 cb-right-4 cb-origin-bottom-right cb-transition-all cb-duration-200 cb-w-[400px] cb-h-[600px] cb-bg-gray-50 cb-rounded-lg cb-shadow-xl cb-flex cb-flex-col`}
+					}`}
 				>
 					{sessionEnded && (
 						<div className='cb-modal-backdrop'>

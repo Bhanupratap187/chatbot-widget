@@ -230,6 +230,7 @@
 	pointer-events: auto !important;
 	transform-origin: bottom right !important;
 	z-index: 9999 !important;
+	margin-right: 1rem !important; /* Add space between window and button */
 }
 
 /* Ensure modal stays on top */
