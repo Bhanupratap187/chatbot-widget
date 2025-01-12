@@ -89,14 +89,18 @@ const Chatbot = ({ apiKey, onStateChange }) => {
 	};
 
 	const handleToggleChat = () => {
-		if (!isOpen) {
-			setManuallyEnded(false);
+		const newState = !isOpen;
+		setIsOpen(newState);
+		if (onStateChange) {
+			onStateChange(newState);
 		}
-		setIsOpen(!isOpen);
 	};
 
 	const handleEndChat = () => {
 		setIsOpen(false);
+		if (onStateChange) {
+			onStateChange(false);
+		}
 		wsRef.current.disconnect(true);
 		setMessages([]);
 		setWsConnected(false);
