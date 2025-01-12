@@ -12,7 +12,7 @@ import {
 import TypingIndicator from "./TypingIndicator";
 import favicon from "../../assets/images/favicon-dark.png";
 
-const Chatbot = ({ apiKey }) => {
+const Chatbot = ({ apiKey, onStateChange }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState([]);
 	const [inputMessage, setInputMessage] = useState("");
@@ -62,6 +62,12 @@ const Chatbot = ({ apiKey }) => {
 			chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
 		}
 	}, [messages, isTyping]);
+
+	useEffect(() => {
+		if (onStateChange) {
+			onStateChange(isOpen);
+		}
+	}, [isOpen, onStateChange]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -238,6 +244,7 @@ const Chatbot = ({ apiKey }) => {
 
 Chatbot.propTypes = {
 	apiKey: PropTypes.string.isRequired,
+	onStateChange: PropTypes.func.isRequired,
 };
 
 export default Chatbot;

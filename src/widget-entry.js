@@ -4,7 +4,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 // Export the initialization function
-function init(apiKey) {
+function init(apiKey, options = {}) {
 	// Create container
 	const container = document.createElement("div");
 	container.id = "chatbot-container";
@@ -16,7 +16,10 @@ function init(apiKey) {
 		React.createElement(
 			React.StrictMode,
 			null,
-			React.createElement(Chatbot, { apiKey })
+			React.createElement(Chatbot, {
+				apiKey,
+				onStateChange: options.onStateChange,
+			})
 		)
 	);
 }
