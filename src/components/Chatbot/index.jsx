@@ -261,11 +261,12 @@
 // export default Chatbot;
 
 // Chatbot.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { PipeCatProvider, usePipeCat } from "./PipeCatProvider";
 import { useRTVIClientEvent } from "@pipecat-ai/client-react";
 import { RTVIEvent } from "@pipecat-ai/client-js";
+import { ChatWebSocket } from "../../lib/websocket";
 import ChatMessage from "./ChatMessage";
 import TypingIndicator from "./TypingIndicator";
 import favicon from "../../assets/images/favicon-dark.png";
@@ -275,9 +276,10 @@ import {
 	XIcon,
 	PowerIcon,
 	BotIcon,
+	MicIcon,
 } from "./SvgIcons";
 
-const ChatWindow = ({ apiKey }) => {
+const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 	const [messages, setMessages] = useState([]);
 	const [inputMessage, setInputMessage] = useState("");
 	const [isTyping, setIsTyping] = useState(false);
@@ -373,14 +375,13 @@ const ChatWindow = ({ apiKey }) => {
 
 	const handleVoiceMessageSubmit = async (e) => {
 		e.preventDefault();
-		if (!inputMessage.trim()) return;
+		e.stopPropagation();
 
 		try {
-			// Send user message to PipeCat
-			await client.sendMessage(inputMessage);
-			setInputMessage("");
+			await client.connect();
+			console.log("Voice button clicked");
 		} catch (error) {
-			console.error("Failed to send message:", error);
+			console.error("Failed to initialize voice chat:", error);
 		}
 	};
 
@@ -392,10 +393,25 @@ const ChatWindow = ({ apiKey }) => {
 	};
 
 	const handleEndChat = async () => {
+		setIsOpen(false);
+		if (onStateChange) {
+			onStateChange(false);
+		}
 		await client.disconnect();
 		wsRef.current.disconnect(true);
 		setMessages([]);
+		setWsConnected(false);
+		setManuallyEnded(true);
 		setSessionEnded(true);
+	};
+
+	const handleCloseChat = () => {
+		setIsOpen(false);
+		if (onStateChange) {
+			onStateChange(false);
+		}
+		// wsRef.current.disconnect(false);
+		// setSessionEnded(false);
 	};
 
 	const handleRestartChat = async () => {
@@ -463,7 +479,7 @@ const ChatWindow = ({ apiKey }) => {
 						<PowerIcon className='cb-w-6 cb-h-6 cb-cursor-pointer' />
 					</button>
 					<button
-						onClick={() => setIsOpen(false)}
+						onClick={handleCloseChat}
 						className='cb-text-white hover:cb-text-purple-200 cb-transition-colors cb-cursor-pointer'
 						title='Close Chat'
 					>
@@ -502,6 +518,7 @@ const ChatWindow = ({ apiKey }) => {
 				>
 					<div className='cb-flex cb-gap-2'>
 						<button
+							type='button'
 							onClick={handleVoiceMessageSubmit}
 							className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
 						>
@@ -558,7 +575,12 @@ const Chatbot = ({ onStateChange, apiKey }) => {
 				{/* Chat window */}
 				{isOpen && (
 					<PipeCatProvider>
-						<ChatWindow apiKey={apiKey} />
+						<ChatWindow
+							apiKey={apiKey}
+							isOpen={isOpen}
+							onStateChange={onStateChange}
+							setIsOpen={setIsOpen}
+						/>
 					</PipeCatProvider>
 				)}
 			</div>
