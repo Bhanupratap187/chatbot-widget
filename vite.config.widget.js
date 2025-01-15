@@ -23,12 +23,21 @@ export default defineConfig({
 			fileName: () => "chatbot.min.js",
 		},
 		rollupOptions: {
-			external: [],
+			external: [
+				"react",
+				"react-dom",
+				"@pipecat-ai/client-js",
+				"@pipecat-ai/client-react",
+				"@pipecat-ai/daily-transport",
+			],
 			output: {
 				name: "ChatbotWidget",
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
+					"@pipecat-ai/client-js": "PipeCatClient",
+					"@pipecat-ai/client-react": "PipeCatReact",
+					"@pipecat-ai/daily-transport": "DailyTransport",
 				},
 
 				assetFileNames: (assetInfo) => {

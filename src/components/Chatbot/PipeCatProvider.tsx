@@ -9,31 +9,35 @@ type PipeCatContextType = RTVIClient | null;
 // Create the context with a default value of `null`
 const PipeCatContext = createContext<PipeCatContextType>(null);
 
-export const PipeCatProvider = ({ children }: { children: React.ReactNode }) => {
-    const client = useRef(
-        new RTVIClient({
-            transport: new DailyTransport(),
-            params: {
-                baseUrl: "http://0.0.0.0:7860", // Replace with your backend URL
-                endpoints: {
-                    connect: "/connect",
-                },
-            },
-            enableMic: true, // Enable microphone if needed
-        })
-    );
+export const PipeCatProvider = ({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
+	const client = useRef(
+		new RTVIClient({
+			transport: new DailyTransport(),
+			params: {
+				baseUrl: "http://0.0.0.0:7860",
+				endpoints: {
+					connect: "/connect",
+				},
+			},
+			enableMic: true, // Enable microphone if needed
+		})
+	);
 
-    return (
-        <PipeCatContext.Provider value={client.current}>
-            {children}
-        </PipeCatContext.Provider>
-    );
+	return (
+		<PipeCatContext.Provider value={client.current}>
+			{children}
+		</PipeCatContext.Provider>
+	);
 };
 
 export const usePipeCat = () => {
-    const context = useContext(PipeCatContext);
-    if (!context) {
-        throw new Error("usePipeCat must be used within a PipeCatProvider");
-    }
-    return context;
+	const context = useContext(PipeCatContext);
+	if (!context) {
+		throw new Error("usePipeCat must be used within a PipeCatProvider");
+	}
+	return context;
 };
