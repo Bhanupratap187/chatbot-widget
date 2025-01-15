@@ -39,6 +39,7 @@ export default defineConfig({
 					"@pipecat-ai/client-react": "PipeCatReact",
 					"@pipecat-ai/daily-transport": "DailyTransport",
 				},
+				extend: true,
 
 				assetFileNames: (assetInfo) => {
 					const { name } = path.parse(assetInfo.name);
