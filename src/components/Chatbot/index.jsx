@@ -340,14 +340,13 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 	}, [isOpen, onStateChange]);
 
 	useEffect(() => {
-		console.log("Setting up UserTranscript event handler");
+		// console.log("Setting up UserTranscript event handler");
 
 		const handler = (data) => {
-			console.log("UserTranscript event received:", data);
+			// console.log("UserTranscript event received:", data);
 			if (data && typeof data.final === "boolean" && data.final === true) {
 				console.log("Final transcription received:", data.text);
 				wsRef.current.sendMessage(data.text);
-				// setMessages((prev) => [...prev, { role: "user", content: data.text }]);
 			} else {
 				console.log("Non-final transcription or invalid data:", data);
 			}
@@ -358,7 +357,7 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 
 		// Cleanup
 		return () => {
-			console.log("Cleaning up UserTranscript event handler");
+			// console.log("Cleaning up UserTranscript event handler");
 			client.off(RTVIEvent.UserTranscript, handler);
 		};
 	}, [client]); // Depend on client
@@ -366,6 +365,14 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 	// Handle typing indicator
 	useRTVIClientEvent(RTVIEvent.BotTyping, () => {
 		setIsTyping(true);
+	});
+
+	useRTVIClientEvent(RTVIEvent.ActionsAvailable, () => {
+		console.log("Actions available");
+	});
+
+	useRTVIClientEvent(RTVIEvent.Connected, () => {
+		console.log("Connected");
 	});
 
 	// Handle session end
@@ -578,7 +585,9 @@ const Chatbot = ({ onStateChange, apiKey }) => {
 				{/* Toggle button */}
 				<button
 					onClick={handleToggleChat}
-					className={`cb-toggle-button ${isOpen ? "cb-hidden" : ""}`}
+					className={`cb-items-center cb-justify-center cb-w-14 cb-h-14 cb-cursor-pointer cb-bg-[#ECFFE6] cb-duration-200 cb-rounded-full cb-shadow-[0_0_15px_5px_rgba(255,245,228,0.6)] ${
+						isOpen ? "cb-opacity-0" : "cb-flex cb-opacity-100"
+					}`}
 				>
 					<img
 						src={favicon || "/favicon-dark.png"}
