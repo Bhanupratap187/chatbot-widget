@@ -270,6 +270,7 @@ import { ChatWebSocket } from "../../lib/websocket";
 import ChatMessage from "./ChatMessage";
 import TypingIndicator from "./TypingIndicator";
 import favicon from "../../assets/images/favicon-dark.png";
+import "../../styles/chatbot.css";
 import {
 	MessageSquareIcon,
 	SendIcon,
