@@ -18,8 +18,7 @@ export const PipeCatProvider = ({
 		new RTVIClient({
 			transport: new DailyTransport(),
 			params: {
-				baseUrl:
-					"https://947c-2401-4900-889b-1e1c-b9c5-719-6da3-b76a.ngrok-free.app",
+				baseUrl: "https://quibble-web.quibbleai.io:7860",
 				endpoints: {
 					connect: "/connect",
 				},

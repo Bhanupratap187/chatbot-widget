@@ -280,8 +280,14 @@ import {
 	MicIcon,
 } from "./SvgIcons";
 
-const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
-	const [messages, setMessages] = useState([]);
+const ChatWindow = ({
+	apiKey,
+	isOpen,
+	onStateChange,
+	setIsOpen,
+	messages,
+	setMessages,
+}) => {
 	const [inputMessage, setInputMessage] = useState("");
 	const [isTyping, setIsTyping] = useState(false);
 	const [sessionEnded, setSessionEnded] = useState(false);
@@ -570,6 +576,7 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 
 const Chatbot = ({ onStateChange, apiKey }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [messages, setMessages] = useState([]);
 
 	const handleToggleChat = () => {
 		const newState = !isOpen;
@@ -604,6 +611,8 @@ const Chatbot = ({ onStateChange, apiKey }) => {
 							isOpen={isOpen}
 							onStateChange={onStateChange}
 							setIsOpen={setIsOpen}
+							messages={messages}
+							setMessages={setMessages}
 						/>
 					</PipeCatProvider>
 				)}
