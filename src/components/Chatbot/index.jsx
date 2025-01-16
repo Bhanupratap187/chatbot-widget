@@ -16,6 +16,7 @@ import {
 	MicIcon,
 	LoadingSpinner,
 } from "./SvgIcons";
+import ConnectingIndicator from "./ConnectingIndicator";
 
 const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 	const [messages, setMessages] = useState([]);
@@ -296,8 +297,10 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 			{/* Messages area */}
 			<div
 				ref={chatboxRef}
-				className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages cb-z-50'
+				className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages cb-z-50 cb-relative'
 			>
+				{micState === "connecting" && <ConnectingIndicator />}
+
 				{messages.map((msg, idx) => (
 					<ChatMessage
 						key={idx}
