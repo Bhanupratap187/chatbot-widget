@@ -338,18 +338,29 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 		}
 	}, [isOpen, onStateChange]);
 
-	// Handle user transcription
-	useRTVIClientEvent(RTVIEvent.UserTranscript, (data) => {
-		if (data.final) {
-			setMessages((prev) => [...prev, { role: "user", content: data.text }]);
-		}
-	});
+	useEffect(() => {
+		console.log("Setting up UserTranscript event handler");
 
-	// Handle bot transcription
-	useRTVIClientEvent(RTVIEvent.BotTranscript, (data) => {
-		setMessages((prev) => [...prev, { role: "assistant", content: data.text }]);
-		setIsTyping(false);
-	});
+		const handler = (data) => {
+			console.log("UserTranscript event received:", data);
+			if (data && typeof data.final === "boolean" && data.final === true) {
+				console.log("Final transcription received:", data.text);
+				wsRef.current.sendMessage(data.text);
+				// setMessages((prev) => [...prev, { role: "user", content: data.text }]);
+			} else {
+				console.log("Non-final transcription or invalid data:", data);
+			}
+		};
+
+		// Register the handler
+		client.on(RTVIEvent.UserTranscript, handler);
+
+		// Cleanup
+		return () => {
+			console.log("Cleaning up UserTranscript event handler");
+			client.off(RTVIEvent.UserTranscript, handler);
+		};
+	}, [client]); // Depend on client
 
 	// Handle typing indicator
 	useRTVIClientEvent(RTVIEvent.BotTyping, () => {
@@ -512,35 +523,38 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 
 			{/* Input area */}
 			<div className='cb-bg-white cb-p-4 cb-shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] cb-z-20'>
-				<form
-					onSubmit={handleTextMessageSubmit}
-					className='cb-relative'
-				>
-					<div className='cb-flex cb-gap-2'>
-						<button
-							type='button'
-							onClick={handleVoiceMessageSubmit}
-							className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
-						>
-							<MicIcon className='cb-w-5 cb-h-5' />
-						</button>
-						<textarea
-							value={inputMessage}
-							onChange={(e) => setInputMessage(e.target.value)}
-							onKeyDown={handleKeyDown}
-							placeholder='Type a message...'
-							className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg cb-border-gray-300 focus:cb-outline-none focus:cb-border-[#BE3CEB] focus:cb-ring-1 focus:cb-ring-[#BE3CEB] cb-bg-white cb-max-h-32 cb-font-normal'
-							rows='1'
-						/>
-						<button
-							type='submit'
-							disabled={!wsConnected}
-							className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
-						>
-							<SendIcon className='cb-w-5 cb-h-5' />
-						</button>
-					</div>
-				</form>
+				<div className='cb-flex cb-gap-2 cb-w-full'>
+					<button
+						type='button'
+						onClick={handleVoiceMessageSubmit}
+						className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
+					>
+						<MicIcon className='cb-w-5 cb-h-5' />
+					</button>
+
+					<form
+						onSubmit={handleTextMessageSubmit}
+						className='cb-flex-1'
+					>
+						<div className='cb-flex cb-gap-2'>
+							<textarea
+								value={inputMessage}
+								onChange={(e) => setInputMessage(e.target.value)}
+								onKeyDown={handleKeyDown}
+								placeholder='Type a message...'
+								className='cb-flex-1 cb-resize-none cb-p-2 cb-border cb-rounded-lg cb-border-gray-300 focus:cb-outline-none focus:cb-border-[#BE3CEB] focus:cb-ring-1 focus:cb-ring-[#BE3CEB] cb-bg-white cb-max-h-32 cb-font-normal'
+								rows='1'
+							/>
+							<button
+								type='submit'
+								disabled={!wsConnected}
+								className='cb-p-2 cb-text-white cb-bg-[#BE3CEB] cb-rounded-lg hover:cb-bg-[#ac2adb] disabled:cb-bg-gray-400 disabled:cb-cursor-not-allowed cb-transition-colors'
+							>
+								<SendIcon className='cb-w-5 cb-h-5' />
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

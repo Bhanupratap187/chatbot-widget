@@ -18,7 +18,7 @@ export const PipeCatProvider = ({
 		new RTVIClient({
 			transport: new DailyTransport(),
 			params: {
-				baseUrl: "http://0.0.0.0:7860",
+				baseUrl: "https://f8f4-202-134-190-221.ngrok-free.app",
 				endpoints: {
 					connect: "/connect",
 				},

@@ -3,7 +3,7 @@ import Chatbot from "./components/Chatbot";
 function App() {
 	return (
 		<div className='App'>
-			<Chatbot apiKey='AK-fa09e232-fb6c-4ff4-926f-2a2f722258fd' />
+			<Chatbot apiKey='AK-d2caff4b-dd0d-4f72-8428-a872e3b39ac6' />
 		</div>
 	);
 }
