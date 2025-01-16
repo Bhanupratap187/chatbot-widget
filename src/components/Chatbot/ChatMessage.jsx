@@ -179,9 +179,7 @@ const ChatMessage = ({ message, type }) => {
 		<div
 			ref={containerRef}
 			className={`cb-flex ${
-				isUser
-					? "cb-flex-row-reverse cb-text-white"
-					: "cb-flex-row cb-text-gray-800"
+				isUser ? "cb-flex-row-reverse" : "cb-flex-row"
 			} cb-items-end cb-gap-2 cb-mb-4`}
 		>
 			{type === "assistant" && (
@@ -189,14 +187,16 @@ const ChatMessage = ({ message, type }) => {
 					<BotIcon className='cb-w-5 cb-h-5 cb-text-white' />
 				</div>
 			)}
-			<div
-				className={`cb-w-fit cb-p-3 cb-rounded-lg ${
-					isUser
-						? "cb-bg-[#BE3CEB] cb-text-white cb-rounded-br-none cb-ml-auto"
-						: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none cb-mr-auto"
-				} cb-font-semibold cb-text-sm`}
-			>
-				{renderMessageContent()}
+			<div className={`${isUser ? "cb-w-[calc(100%-2.5rem)]" : "cb-flex-1"}`}>
+				<div
+					className={`cb-w-fit cb-p-3 cb-rounded-lg ${
+						isUser
+							? "cb-bg-[#BE3CEB] cb-text-white cb-rounded-br-none cb-ml-auto"
+							: "cb-bg-gray-100 cb-text-gray-800 cb-rounded-bl-none"
+					} cb-font-semibold cb-text-sm`}
+				>
+					{renderMessageContent()}
+				</div>
 			</div>
 		</div>
 	);
