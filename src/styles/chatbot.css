@@ -227,7 +227,7 @@
 
 /* Add these new styles */
 .cb-chat-window {
-	pointer-events: auto !important;
+	/* pointer-events: auto !important; */
 	transform-origin: bottom left !important;
 	z-index: 9999 !important;
 	max-height: calc(100vh - 5rem) !important; /* Prevent overflow */

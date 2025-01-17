@@ -74,12 +74,15 @@ export class ChatWebSocket {
 		if (this.inactivityTimeout) {
 			clearTimeout(this.inactivityTimeout);
 		}
+
 		// Send keepAlive event after 1 minute of inactivity
 		this.inactivityTimeout = setTimeout(() => {
-			const keepAlivePayload = {
-				event: "keepAlive",
-			};
-			this.ws.send(JSON.stringify(keepAlivePayload));
+			if (this.ws?.readyState === WebSocket.OPEN) {
+				const keepAlivePayload = {
+					event: "keepAlive",
+				};
+				this.ws.send(JSON.stringify(keepAlivePayload));
+			}
 		}, 50000);
 
 		// Close connection after 3 minutes of inactivity

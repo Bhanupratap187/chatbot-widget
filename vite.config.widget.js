@@ -23,14 +23,13 @@ export default defineConfig({
 			fileName: () => "chatbot.min.js",
 		},
 		rollupOptions: {
-			external: [],
+			external: ["react", "react-dom"],
 			output: {
 				name: "ChatbotWidget",
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
 				},
-
 				assetFileNames: (assetInfo) => {
 					const { name } = path.parse(assetInfo.name);
 					if (assetInfo.type === "asset" && /\.(css)$/.test(assetInfo.name)) {
@@ -50,7 +49,6 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "src"),
 		},
 	},
-	// Add this to ensure proper handling of externals in development
 	optimizeDeps: {
 		exclude: ["react", "react-dom"],
 	},
