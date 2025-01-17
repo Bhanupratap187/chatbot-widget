@@ -9,7 +9,7 @@ const ConnectingIndicator = () => (
 				alt='quibbleAI'
 				className='cb-w-12 cb-h-12'
 			/>
-			<div className='cb-flex cb-flex-col cb-items-center cb-gap-2'>
+			<div className='cb-flex cb-flex-row cb-items-center cb-gap-2'>
 				<span className='cb-text-gray-700 cb-font-medium'>Connecting</span>
 				<div className='cb-flex cb-items-center cb-gap-1'>
 					<div className='cb-w-2 cb-h-2 cb-rounded-full cb-bg-[#BE3CEB] cb-animate-bounce'></div>

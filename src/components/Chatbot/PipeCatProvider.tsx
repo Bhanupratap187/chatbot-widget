@@ -19,7 +19,7 @@ export const PipeCatProvider = ({
 			transport: new DailyTransport(),
 			params: {
 				baseUrl:
-					"https://947c-2401-4900-889b-1e1c-b9c5-719-6da3-b76a.ngrok-free.app",
+					"https://80a7-2401-4900-889b-1e1c-b0b1-44bb-f254-e34d.ngrok-free.app",
 				endpoints: {
 					connect: "/connect",
 				},

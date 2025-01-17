@@ -208,6 +208,9 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 					: "cb-scale-95 cb-opacity-0 cb-translate-y-4"
 			}`}
 		>
+			{/* Show mic ConnectingIndicator */}
+			{micState === "connecting" && <ConnectingIndicator />}
+
 			{/* Close confirmation modal */}
 			{showCloseModal && (
 				<div className='cb-modal-backdrop'>
@@ -299,8 +302,6 @@ const ChatWindow = ({ apiKey, isOpen, onStateChange, setIsOpen }) => {
 				ref={chatboxRef}
 				className='cb-flex-1 cb-overflow-y-auto cb-p-4 cb-space-y-4 cb-bg-gray-50 cb-chat-messages cb-z-50 cb-relative'
 			>
-				{micState === "connecting" && <ConnectingIndicator />}
-
 				{messages.map((msg, idx) => (
 					<ChatMessage
 						key={idx}
